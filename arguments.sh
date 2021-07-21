@@ -8,7 +8,7 @@ ARG=$($TESTER $1 0)
 clear
 make all
 echo "========================"
-echo -e "\e[105mArguments : $ARG\e[0m"
+echo -e "\e[30;105mArguments : $ARG\e[0m"
 echo "========================"
 
 ./push_swap $ARG

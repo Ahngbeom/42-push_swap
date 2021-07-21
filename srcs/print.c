@@ -44,7 +44,7 @@ void    print_stack(t_frame *frame)
     a = frame->a;
     b = frame->b;
     cmd_list = frame->cmd_list;
-    printf("\e[1;92mA\e[0m\t\t\e[1;96mB\e[0m\t\t(pivot(\e[1;92mA\e[0m) : \e[1;42m %d \e[0m, pivot(\e[1;96mB\e[0m) : \e[1;46m %d \e[0m)\n", frame->pivot_a, frame->pivot_b);
+    printf("\e[1;92mA\e[0m\t\t\e[1;96mB\e[0m\t\t[pivot(\e[1;92mA\e[0m) : \e[1;30;102m %d \e[0m, pivot(\e[1;96mB\e[0m) : \e[1;30;46m %d \e[0m]\n", frame->pivot_a, frame->pivot_b);
     printf("=====================\n");
 	while (a != NULL || b != NULL || cmd_list != NULL)
 	{
