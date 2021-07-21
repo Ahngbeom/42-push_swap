@@ -25,7 +25,7 @@ SRCS_DIR		= ./srcs/
 SRCS_NAME		= push_swap.c \
 					frame.c stack.c command.c print.c \
 					check.c sort.c length.c \
-					element.c pivot.c \
+					element.c \
 					case.c \
 					swap.c push.c rotate.c
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_NAME))

@@ -16,7 +16,7 @@ void    rotate(t_frame *frame, char target)
 {
     t_stack *temp;
     
-    if (target == 'A')
+    if (target == 'A' && length(frame->a) > 1)
     {
         temp = frame->a;
         temp->prev = last_element(frame->a);
@@ -28,7 +28,7 @@ void    rotate(t_frame *frame, char target)
         add_command(frame, "ra");
         print_stack(frame);
     }
-    else if (target == 'B')
+    else if (target == 'B' && length(frame->b) > 1)
     {
         temp = frame->b;
         temp->prev = last_element(frame->b);
@@ -40,7 +40,7 @@ void    rotate(t_frame *frame, char target)
         add_command(frame, "rb");
         print_stack(frame);
     }
-    else if (target == 'R')
+    else if (target == 'R' && (length(frame->a) > 1 && length(frame->b) > 1))
     {
         temp = frame->a;
         temp->prev = last_element(frame->a);
@@ -61,14 +61,14 @@ void    rotate(t_frame *frame, char target)
         print_stack(frame);
     }
     else
-        exit(1);
+        return ;
 }
 
 void    reverse_rotate(t_frame *frame, char target)
 {
     t_stack *temp;
     
-    if (target == 'A')
+    if (target == 'A' && length(frame->a) > 1)
     {
         temp = last_element(frame->a);
         temp->prev->next = NULL;
@@ -80,7 +80,7 @@ void    reverse_rotate(t_frame *frame, char target)
         add_command(frame, "rra");
         print_stack(frame);
     }
-    else if (target == 'B')
+    else if (target == 'B' && length(frame->b) > 1)
     {
         temp = last_element(frame->b);
         temp->prev->next = NULL;
@@ -92,7 +92,7 @@ void    reverse_rotate(t_frame *frame, char target)
         add_command(frame, "rrb");
         print_stack(frame);
     }
-    else if (target == 'R')
+    else if (target == 'R' && (length(frame->a) > 1 && length(frame->b) > 1))
     {
         temp = last_element(frame->a);
         temp->prev->next = NULL;
@@ -109,5 +109,5 @@ void    reverse_rotate(t_frame *frame, char target)
         print_stack(frame);
     }
     else
-        exit(1);
+        return ;
 }

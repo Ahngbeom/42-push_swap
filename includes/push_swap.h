@@ -87,11 +87,12 @@ void	case_3(t_frame *frame);
 void	case_5(t_frame *frame);
 void	case_other(t_frame *frame);
 
-void       swap(t_frame *frame, char target);
+void    push_a(t_frame *frame);
+void    push_b(t_frame *frame);
 
-int     push(t_frame *frame, char target);
-void	less_than_to_pivot(t_frame *frame);
-void    greater_than_or_eq_to_pivot(t_frame *frame);
+void	swap_a(t_frame *frame);
+void	swap_b(t_frame *frame);
+void	swap_s(t_frame *frame);
 
 void    rotate(t_frame *frame, char target);
 void    reverse_rotate(t_frame *frame, char target);

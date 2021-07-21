@@ -12,11 +12,13 @@
 
 #include "push_swap.h"
 
-void       swap(t_frame *frame, char target)
+void       swap_a(t_frame *frame)
 {
     t_stack     *temp;
 
-    if (target == 'A')
+    if (length(frame->b) >= 2 && frame->b->element < frame->b->next->element)
+        swap_s(frame);
+    else
     {
         temp = frame->a->next;
         frame->a->prev = temp;
@@ -24,12 +26,18 @@ void       swap(t_frame *frame, char target)
         temp->prev = NULL;
         temp->next = frame->a;
         frame->a = temp;
-       
-        // frame->cmd = ft_strjoin(frame->cmd, "sa\n");
         add_command(frame, "sa");
         print_stack(frame);
     }
-    else if (target == 'B')
+}
+
+void       swap_b(t_frame *frame)
+{
+    t_stack     *temp;
+
+    if (length(frame->a) >= 2 && frame->a->element > frame->a->next->element)
+        swap_s(frame);
+    else
     {
         temp = frame->b->next;
         frame->b->prev = temp;
@@ -37,30 +45,28 @@ void       swap(t_frame *frame, char target)
         temp->prev = NULL;
         temp->next = frame->b;
         frame->b = temp;
-        // frame->cmd = ft_strjoin(frame->cmd, "sb\n");
         add_command(frame, "sb");
         print_stack(frame);
     }
-    else if (target == 'S')
-    {
-        temp = frame->a->next;
-        frame->a->prev = temp;
-        frame->a->next = temp->next;
-        temp->prev = NULL;
-        temp->next = frame->a;
-        frame->a = temp;
+}
 
-        temp = frame->b->next;
-        frame->b->prev = temp;
-        frame->b->next = temp->next;
-        temp->prev = NULL;
-        temp->next = frame->b;
-        frame->b = temp;
+void       swap_s(t_frame *frame)
+{
+    t_stack     *temp;
 
-        // frame->cmd = ft_strjoin(frame->cmd, "ss\n");
-        add_command(frame, "ss");
-        print_stack(frame);
-    }
-    else
-        exit(1);
+    temp = frame->a->next;
+    frame->a->prev = temp;
+    frame->a->next = temp->next;
+    temp->prev = NULL;
+    temp->next = frame->a;
+    frame->a = temp;
+
+    temp = frame->b->next;
+    frame->b->prev = temp;
+    frame->b->next = temp->next;
+    temp->prev = NULL;
+    temp->next = frame->b;
+    frame->b = temp;
+    add_command(frame, "ss");
+    print_stack(frame);
 }

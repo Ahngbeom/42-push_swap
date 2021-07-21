@@ -12,15 +12,27 @@
 
 #include "push_swap.h"
 
-void    print_strupper(char *str)
+static  t_command     *last_command(t_command *command)
 {
-    int     i;
-
-    i = 0;
-    while (str[i] != '\0')
-        printf("\e[1;33m%c\e[0m", ft_toupper(str[i++]));
-    printf("\n");
+    t_command     *ptr;
+    
+    if (command == NULL)
+        return (NULL);
+    ptr = command;
+    while (ptr->next != NULL)   
+        ptr = ptr->next;
+    return (ptr);
 }
+
+// static  void    print_strupper(char *str)
+// {
+//     int     i;
+
+//     i = 0;
+//     while (str[i] != '\0')
+//         printf("\e[1;33m%c\e[0m", ft_toupper(str[i++]));
+//     printf("\n");
+// }
 
 void    print_command(t_command *cmd_list)
 {
@@ -39,14 +51,20 @@ void    print_stack(t_frame *frame)
     // (void)frame;
     t_stack     *a;
     t_stack     *b;
-    t_command   *cmd_list;
+    t_command   *last_cmd;
     
     a = frame->a;
     b = frame->b;
-    cmd_list = frame->cmd_list;
+    // cmd_list = frame->cmd_list;
     printf("\e[1;92mA\e[0m\t\t\e[1;96mB\e[0m\t\t[pivot(\e[1;92mA\e[0m) : \e[1;30;102m %d \e[0m, pivot(\e[1;96mB\e[0m) : \e[1;30;46m %d \e[0m]\n", frame->pivot_a, frame->pivot_b);
-    printf("=====================\n");
-	while (a != NULL || b != NULL || cmd_list != NULL)
+    printf("=====================");
+    if ((last_cmd = last_command(frame->cmd_list)) != NULL)
+        printf("\t\t\e[1;33m%s\e[0m\n", last_cmd->cmd);
+    else
+    {
+        printf("\n");
+    }
+	while (a != NULL || b != NULL)
 	{
         if (a != NULL)
         {
@@ -57,16 +75,8 @@ void    print_stack(t_frame *frame)
             printf("\t\t");
         if (b != NULL)
         {
-            printf("\e[1;96m%d\e[0m\t\t", b->element);
+            printf("\e[1;96m%d\e[0m\n", b->element);
             b = b->next;
-        }
-        else
-            printf("\t\t");
-        if (cmd_list != NULL)
-        {
-            // printf("\e[1;33m%s\e[0m\n", cmd_list->cmd);
-            print_strupper(cmd_list->cmd);
-            cmd_list = cmd_list->next;
         }
         else
             printf("\n");

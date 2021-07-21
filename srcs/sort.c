@@ -15,7 +15,7 @@
 void    ascending(t_frame *frame)
 {
     if (length(frame->a) == 2)
-        swap(frame, 'A');
+        swap_a(frame);
     else if (length(frame->a) == 3)
         case_3(frame);
     else if (length(frame->a) <= 5)

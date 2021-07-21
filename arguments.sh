@@ -13,15 +13,12 @@ echo "========================"
 
 ./push_swap $ARG
 echo -ne "How many times use command? "
-echo $(./push_swap $ARG | grep -oP $COMMAND | wc -l)
+echo $(./push_swap $ARG | grep -woP $COMMAND | wc -l)
 # ./push_swap $ARG | grep -P $COMMAND | wc -l
-CHECKER=$(./push_swap $ARG | grep -oP $COMMAND | ./checker_linux $ARG)
+CHECKER=$(./push_swap $ARG | grep -woP $COMMAND | ./checker_linux $ARG)
+# CHECKER=$(./push_swap $ARG | grep -oP $COMMAND | ./checker_Mac $ARG)
 if [[ $CHECKER == "OK" ]]; then
-    echo -ne "\e[30;103mChecker : \e[1;92m$CHECKER ✔️\e[0m\n"
+    echo -ne "\e[30;103mChecker : \e[1;32m$CHECKER ✔️\e[0m\n"
 else
     echo -ne "Checker : \e[1;31m$CHECKER\e[0m ❌\n"
 fi
-
-
-
-# echo -ne "Checker : " && ./push_swap $ARG | grep -P $COMMAND | ./checker_Mac $ARG
