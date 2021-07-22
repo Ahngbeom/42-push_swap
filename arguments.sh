@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TESTER=./push_swap_tester/random_numbers
-COMMAND="pa|pb|sa|sb|ss|ra|rb|rra|rrb|rrr"
+COMMAND="pa|pb|sa|sb|ss|ra|rb|rr|rra|rrb|rrr"
 
 ARG=$($TESTER $1 0)
 

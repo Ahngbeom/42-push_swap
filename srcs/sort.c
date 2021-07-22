@@ -21,6 +21,9 @@ void    ascending(t_frame *frame)
     else if (length(frame->a) <= 5)
         case_5(frame);
     else
+    {
+	    frame->pivot_b = median(frame->a, length(frame->a) / 2);
         case_other(frame);
+    }
 }
 

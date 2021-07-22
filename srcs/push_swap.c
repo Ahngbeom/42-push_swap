@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 20:33:07 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/22 16:05:26 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	frame = frame_init();
 	stack_init(frame, argv);
 	
-	if (check_asc(frame->a) == 0 && frame->b == NULL)
+	if (check_asc(frame->a) == TRUE && frame->b == NULL)
 		return (0);
 	else
 	{

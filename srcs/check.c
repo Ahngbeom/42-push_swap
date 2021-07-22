@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bahn@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:55:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/06/15 18:28:20 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/22 16:02:21 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int     check_asc(t_stack *stack)
         while (j != NULL)
         {
             if (i->element > j->element)
-                return (1);
+                return (FALSE);
             j = j->next;
         }
         i = i->next;
     }
-    return (0);
+    return (TRUE);
 }
 
 int     check_desc(t_stack *stack)

@@ -6,7 +6,7 @@
 #    By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/07/20 17:28:07 by bahn             ###   ########.fr        #
+#    Updated: 2021/07/22 13:48:33 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,8 @@ LINK_LIBFT		= -Llibft -lft
 SRCS_DIR		= ./srcs/
 SRCS_NAME		= push_swap.c \
 					frame.c stack.c command.c print.c \
-					check.c sort.c length.c \
-					element.c \
-					case.c \
-					swap.c push.c rotate.c
+					check.c sort.c length.c element.c case.c \
+					swap.c push.c rotate.c reverse_rotate.c
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_NAME))
 OBJS			= $(SRCS:.c=.o)
 

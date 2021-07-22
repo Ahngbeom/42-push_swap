@@ -6,17 +6,22 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 18:39:19 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/22 14:27:18 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    rotate(t_frame *frame, char target)
+void    rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
-    if (target == 'A' && length(frame->a) > 1)
+    if (length(frame->a) < 2)
+        printf("ra : 해당 연산을 수행할 수 없습니다.\n");
+    else if (length(frame->b) >= 2 && check_desc(frame->b) != 0 &&\
+        (frame->b->element == min(frame->b) || frame->pivot_b > frame->b->element))
+        rotate_r(frame);
+    else
     {
         temp = frame->a;
         temp->prev = last_element(frame->a);
@@ -24,90 +29,60 @@ void    rotate(t_frame *frame, char target)
         frame->a->prev = NULL;
         last_element(frame->a)->next = temp;
         temp->next = NULL;
-        // frame->cmd = ft_strjoin(frame->cmd, "ra\n");
         add_command(frame, "ra");
         print_stack(frame);
     }
-    else if (target == 'B' && length(frame->b) > 1)
-    {
-        temp = frame->b;
-        temp->prev = last_element(frame->b);
-        frame->b = frame->b->next;
-        frame->b->prev = NULL;
-        last_element(frame->b)->next = temp;
-        temp->next = NULL;
-        // frame->cmd = ft_strjoin(frame->cmd, "rb\n");
-        add_command(frame, "rb");
-        print_stack(frame);
-    }
-    else if (target == 'R' && (length(frame->a) > 1 && length(frame->b) > 1))
-    {
-        temp = frame->a;
-        temp->prev = last_element(frame->a);
-        frame->a = frame->a->next;
-        frame->a->prev = NULL;
-        last_element(frame->a)->next = temp;
-        temp->next = NULL;
-
-        temp = frame->b;
-        temp->prev = last_element(frame->b);
-        frame->b = frame->b->next;
-        frame->b->prev = NULL;
-        last_element(frame->b)->next = temp;
-        temp->next = NULL;
-
-        // frame->cmd = ft_strjoin(frame->cmd, "rr\n");
-        add_command(frame, "rr");
-        print_stack(frame);
-    }
-    else
-        return ;
+    
 }
 
-void    reverse_rotate(t_frame *frame, char target)
+void    rotate_b(t_frame *frame)
 {
     t_stack *temp;
     
-    if (target == 'A' && length(frame->a) > 1)
+    if (length(frame->a) < 2)
     {
-        temp = last_element(frame->a);
-        temp->prev->next = NULL;
-        temp->prev = NULL;
-        temp->next = frame->a;
-        frame->a->prev = temp;
-        frame->a = temp;
-        // frame->cmd = ft_strjoin(frame->cmd, "rra\n");
-        add_command(frame, "rra");
-        print_stack(frame);
-    }
-    else if (target == 'B' && length(frame->b) > 1)
-    {
-        temp = last_element(frame->b);
-        temp->prev->next = NULL;
-        temp->prev = NULL;
-        temp->next = frame->b;
-        frame->b->prev = temp;
-        frame->b = temp;
-        // frame->cmd = ft_strjoin(frame->cmd, "rrb\n");
-        add_command(frame, "rrb");
-        print_stack(frame);
-    }
-    else if (target == 'R' && (length(frame->a) > 1 && length(frame->b) > 1))
-    {
-        temp = last_element(frame->a);
-        temp->prev->next = NULL;
-        temp->next = frame->a;
-        frame->a = temp;
-
-        temp = last_element(frame->b);
-        temp->prev->next = NULL;
-        temp->next = frame->b;
-        frame->b = temp;
-        
-        // frame->cmd = ft_strjoin(frame->cmd, "rrr\n");
-        add_command(frame, "rrr");
-        print_stack(frame);
-    }
-    else
+        printf("rb : 해당 연산을 수행할 수 없습니다.\n");
         return ;
+    }
+    else if (length(frame->a) >= 2 && check_asc(frame->a) != 0 && \
+        (frame->a->element == max(frame->a) || frame->pivot_a <= frame->a->element))
+        rotate_r(frame);
+    else
+    {
+        temp = frame->b;
+        temp->prev = last_element(frame->b);
+        frame->b = frame->b->next;
+        frame->b->prev = NULL;
+        last_element(frame->b)->next = temp;
+        temp->next = NULL;
+        add_command(frame, "rb");
+        print_stack(frame);
+    }
+}
+
+void    rotate_r(t_frame *frame)
+{
+    t_stack *temp;
+    
+    if (length(frame->a) < 2 || length(frame->b) < 2)
+    {
+        printf("rr : 해당 연산을 수행할 수 없습니다.\n");
+        return ;
+    }
+    temp = frame->a;
+    temp->prev = last_element(frame->a);
+    frame->a = frame->a->next;
+    frame->a->prev = NULL;
+    last_element(frame->a)->next = temp;
+    temp->next = NULL;
+
+    temp = frame->b;
+    temp->prev = last_element(frame->b);
+    frame->b = frame->b->next;
+    frame->b->prev = NULL;
+    last_element(frame->b)->next = temp;
+    temp->next = NULL;
+
+    add_command(frame, "rr");
+    print_stack(frame);
 }

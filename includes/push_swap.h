@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 20:33:04 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/22 15:23:55 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define TRUE			1
+# define FALSE			0
 
 # define SWAP_A			"sa"
 # define SWAP_B			"sb"
@@ -90,11 +93,17 @@ void	case_other(t_frame *frame);
 void    push_a(t_frame *frame);
 void    push_b(t_frame *frame);
 
+int		swap_check(t_frame *frame, t_stack *stack);
 void	swap_a(t_frame *frame);
 void	swap_b(t_frame *frame);
 void	swap_s(t_frame *frame);
 
-void    rotate(t_frame *frame, char target);
-void    reverse_rotate(t_frame *frame, char target);
+void    rotate_a(t_frame *frame);
+void    rotate_b(t_frame *frame);
+void    rotate_r(t_frame *frame);
+
+void    reverse_rotate_a(t_frame *frame);
+void    reverse_rotate_b(t_frame *frame);
+void    reverse_rotate_r(t_frame *frame);
 
 #endif

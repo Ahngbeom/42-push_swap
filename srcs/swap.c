@@ -6,17 +6,42 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:47:29 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 21:03:44 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/22 15:58:07 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void       swap_a(t_frame *frame)
+int     swap_check(t_frame *frame, t_stack *stack)
+{
+    if (length(stack) < 2)
+        return (FALSE);
+    if (frame->a == stack)
+    {   
+        if (stack->element > stack->next->element)
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+    else if (frame->b == stack)
+    {   
+        if (stack->element < stack->next->element)
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+    else
+    {
+        printf("ERROR\n");
+        exit(1);
+    }
+}
+
+void     swap_a(t_frame *frame)
 {
     t_stack     *temp;
 
-    if (length(frame->b) >= 2 && frame->b->element < frame->b->next->element)
+    if (swap_check(frame, frame->b))
         swap_s(frame);
     else
     {
@@ -35,7 +60,7 @@ void       swap_b(t_frame *frame)
 {
     t_stack     *temp;
 
-    if (length(frame->a) >= 2 && frame->a->element > frame->a->next->element)
+    if (swap_check(frame, frame->a))
         swap_s(frame);
     else
     {
