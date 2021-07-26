@@ -6,21 +6,42 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/22 13:45:29 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/23 13:17:04 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int     reverse_rotate_check(t_frame *frame, t_stack *stack)
+{
+    if (length(stack) < 2)
+        return (FALSE);
+    if (frame->a == stack && check_asc(stack) == FALSE)
+    {
+        if (frame->pivot_a > last_element(stack)->element)
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+    else if (frame->b == stack && check_desc(stack) == FALSE)
+    {
+        if (frame->pivot_b < last_element(stack)->element)
+            return (TRUE);
+        else if (max(stack) == last_element(stack)->element)
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+    else
+        return (FALSE);
+}
+
 void    reverse_rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
-    if (length(frame->a) < 2)
-    {
-        printf("rra : 해당 연산을 수행할 수 없습니다.\n");
-        return ;
-    }
+    if (reverse_rotate_check(frame, frame->b))
+        reverse_rotate_r(frame);
     temp = last_element(frame->a);
     temp->prev->next = NULL;
     temp->prev = NULL;
@@ -35,11 +56,8 @@ void    reverse_rotate_b(t_frame *frame)
 {
     t_stack *temp;
 
-    if (length(frame->a) < 2)
-    {
-        printf("rrb : 해당 연산을 수행할 수 없습니다.\n");
-        return ;
-    }
+    if (reverse_rotate_check(frame, frame->a))
+        reverse_rotate_r(frame);
     temp = last_element(frame->b);
     temp->prev->next = NULL;
     temp->prev = NULL;
@@ -54,11 +72,6 @@ void    reverse_rotate_r(t_frame *frame)
 {
     t_stack *temp;
     
-    if (length(frame->a) < 2)
-    {
-        printf("rrr : 해당 연산을 수행할 수 없습니다.\n");
-        return ;
-    }
     temp = last_element(frame->a);
     temp->prev->next = NULL;
     temp->next = frame->a;

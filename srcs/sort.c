@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:59:01 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 17:43:48 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/26 20:10:47 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,21 @@ void    ascending(t_frame *frame)
         case_5(frame);
     else
     {
-	    frame->pivot_b = median(frame->a, length(frame->a) / 2);
-        case_other(frame);
+        div_by_pivot_to_a(frame);
+        div_by_pivot_to_b(frame);
+    }
+}
+
+void    descending(t_frame *frame)
+{
+    if (length(frame->a) == 2)
+        swap_b(frame);
+    else if (length(frame->a) == 3)
+        case_3(frame);
+    else
+    {
+        div_by_pivot_to_a(frame);
+        div_by_pivot_to_b(frame);
     }
 }
 

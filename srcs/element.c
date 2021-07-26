@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bahn@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 16:42:19 by bahn              #+#    #+#             */
-/*   Updated: 2021/06/02 16:18:45 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/26 20:22:02 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ t_stack     *last_element(t_stack *stack)
 
     ptr = stack;
     while (ptr->next != NULL)
-    {
         ptr = ptr->next;
-    }
     return (ptr);
 }
 
@@ -64,6 +62,8 @@ int     median(t_stack *stack, int size)
     int     j;
     int     temp;
     
+    if (length(stack) < 2)
+        return (0);
     i = 0;
     ptr = stack;
     while (i < length(stack))

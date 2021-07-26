@@ -6,20 +6,43 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/22 14:27:18 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/23 16:40:36 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int     rotate_check(t_frame *frame, t_stack *stack)
+{
+    if (length(stack) < 2)
+        return (FALSE);
+    if (frame->a == stack && check_asc(stack) == FALSE)
+    {
+        if (stack->element == max(stack))
+            return (TRUE);
+        else if (frame->pivot_a < stack->element)
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+    else if (frame->b == stack && check_desc(stack) == FALSE)
+    {
+        if (stack->element == min(stack))
+            return (TRUE);
+        else if (frame->pivot_b > stack->element)
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+    else
+        return (FALSE);
+}
+
 void    rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
-    if (length(frame->a) < 2)
-        printf("ra : 해당 연산을 수행할 수 없습니다.\n");
-    else if (length(frame->b) >= 2 && check_desc(frame->b) != 0 &&\
-        (frame->b->element == min(frame->b) || frame->pivot_b > frame->b->element))
+    if (rotate_check(frame, frame->b))
         rotate_r(frame);
     else
     {
@@ -39,13 +62,7 @@ void    rotate_b(t_frame *frame)
 {
     t_stack *temp;
     
-    if (length(frame->a) < 2)
-    {
-        printf("rb : 해당 연산을 수행할 수 없습니다.\n");
-        return ;
-    }
-    else if (length(frame->a) >= 2 && check_asc(frame->a) != 0 && \
-        (frame->a->element == max(frame->a) || frame->pivot_a <= frame->a->element))
+    if (rotate_check(frame, frame->a))
         rotate_r(frame);
     else
     {
@@ -64,11 +81,6 @@ void    rotate_r(t_frame *frame)
 {
     t_stack *temp;
     
-    if (length(frame->a) < 2 || length(frame->b) < 2)
-    {
-        printf("rr : 해당 연산을 수행할 수 없습니다.\n");
-        return ;
-    }
     temp = frame->a;
     temp->prev = last_element(frame->a);
     frame->a = frame->a->next;
