@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:12:46 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 20:34:23 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/28 13:29:30 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,20 @@ void    add_command(t_frame *frame, char *cmd)
     }
     else
         frame->cmd_list = create_command(cmd);
+}
+
+int     count_command(t_frame *frame, char *find)
+{
+    t_command   *ptr;
+    int         count;
+
+    ptr = frame->cmd_list;
+    count = 0;
+    while (ptr != NULL)
+    {
+        if (ft_strcmp(ptr->cmd, find) == TRUE)
+            count++;
+        ptr = ptr->next;
+    }
+    return (count);
 }

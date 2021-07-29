@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:59:01 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/26 20:10:47 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/27 12:55:11 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void    ascending(t_frame *frame)
         case_5(frame);
     else
     {
-        div_by_pivot_to_a(frame);
         div_by_pivot_to_b(frame);
+        // div_by_pivot_to_a(frame);
     }
 }
 

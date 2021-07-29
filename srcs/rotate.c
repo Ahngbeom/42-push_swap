@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/23 16:40:36 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/29 16:33:16 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int     rotate_check(t_frame *frame, t_stack *stack)
         return (FALSE);
 }
 
-void    rotate_a(t_frame *frame)
+int    rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
-    if (rotate_check(frame, frame->b))
-        rotate_r(frame);
-    else
-    {
+    // if (rotate_check(frame, frame->b))
+    //     rotate_r(frame);
+    // else
+    // {
         temp = frame->a;
         temp->prev = last_element(frame->a);
         frame->a = frame->a->next;
@@ -54,18 +54,18 @@ void    rotate_a(t_frame *frame)
         temp->next = NULL;
         add_command(frame, "ra");
         print_stack(frame);
-    }
-    
+    // }
+    return (1);
 }
 
-void    rotate_b(t_frame *frame)
+int    rotate_b(t_frame *frame)
 {
     t_stack *temp;
     
-    if (rotate_check(frame, frame->a))
-        rotate_r(frame);
-    else
-    {
+    // if (rotate_check(frame, frame->a))
+    //     rotate_r(frame);
+    // else
+    // {
         temp = frame->b;
         temp->prev = last_element(frame->b);
         frame->b = frame->b->next;
@@ -74,7 +74,8 @@ void    rotate_b(t_frame *frame)
         temp->next = NULL;
         add_command(frame, "rb");
         print_stack(frame);
-    }
+    // }
+    return (1);
 }
 
 void    rotate_r(t_frame *frame)

@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 13:59:49 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 20:56:28 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/29 17:15:25 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,16 @@ void    print_stack(t_frame *frame)
 	{
         if (a != NULL)
         {
+            // if (a->prev == NULL)
+            //     printf("NULL->");
+            // else
+            //     printf("%d->", a->prev->element);
             printf("\e[1;92m%d\e[0m\t\t", a->element);
+            // printf("\e[1;92m%d\e[0m", a->element);
+            // if (a->next == NULL)
+            //     printf("->NULL\t\t");
+            // else
+            //     printf("->%d\t\t", a->next->element);
             a = a->next;
         }
         else

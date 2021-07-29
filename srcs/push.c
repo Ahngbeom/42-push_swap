@@ -6,13 +6,13 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:25:48 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/23 18:03:00 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/29 22:56:57 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void     push_a(t_frame *frame)
+int     push_a(t_frame *frame)
 {
     t_stack     *temp;
     
@@ -25,9 +25,10 @@ void     push_a(t_frame *frame)
     frame->b = temp;
     add_command(frame, "pa");
     print_stack(frame);
+    return (1);
 }
 
-void     push_b(t_frame *frame)
+int     push_b(t_frame *frame)
 {
     t_stack     *temp;
 
@@ -40,5 +41,6 @@ void     push_b(t_frame *frame)
     frame->a = temp;
     add_command(frame, "pb");
     print_stack(frame);
+    return (1);
 }
 

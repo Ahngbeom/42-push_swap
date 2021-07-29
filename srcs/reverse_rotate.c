@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/23 13:17:04 by bahn             ###   ########.fr       */
+/*   Updated: 2021/07/29 17:15:00 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,16 @@ void    reverse_rotate_r(t_frame *frame)
     
     temp = last_element(frame->a);
     temp->prev->next = NULL;
+    temp->prev = NULL;
     temp->next = frame->a;
+    frame->a->prev = temp;
     frame->a = temp;
 
     temp = last_element(frame->b);
     temp->prev->next = NULL;
+    temp->prev = NULL;
     temp->next = frame->b;
+    frame->b->prev = temp;
     frame->b = temp;
     
     add_command(frame, "rrr");
