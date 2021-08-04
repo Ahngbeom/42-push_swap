@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 16:42:19 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/26 20:22:02 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/03 15:23:22 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ t_stack     *last_element(t_stack *stack)
 
     ptr = stack;
     while (ptr->next != NULL)
+        ptr = ptr->next;
+    return (ptr);
+}
+
+t_stack     *mid_element(t_stack *stack)
+{
+    t_stack     *ptr;
+    int         count;
+
+    count = 0;
+    ptr = stack;
+    while (count++ < length(stack) / 2)
         ptr = ptr->next;
     return (ptr);
 }
@@ -88,10 +100,5 @@ int     median(t_stack *stack, int size)
         }
         i++;
     }
-    // i = 0;
-    // while (i < length(stack))
-    // {
-    //     printf("%d\n", arr[i++]);
-    // }
     return (arr[size / 2]);
 }
