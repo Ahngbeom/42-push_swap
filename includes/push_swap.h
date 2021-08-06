@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/04 15:57:34 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/06 15:05:18 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void    descending(t_frame *frame);
 void	case_3(t_frame *frame);
 void	case_5(t_frame *frame);
 void	div_by_pivot_to_b(t_frame *frame);
-// void	div_by_pivot_to_a(t_frame *frame);
+void	div_by_pivot_to_a(t_frame *frame);
 
 int    push_a(t_frame *frame);
 int    push_b(t_frame *frame);
