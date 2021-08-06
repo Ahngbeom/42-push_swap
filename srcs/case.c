@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:02:38 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/04 15:57:30 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/06 14:58:05 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ void	after_div_restore(t_frame *frame, int ra, int rb)
 
 void	div_by_pivot_to_b(t_frame *frame)
 {	
+	int		ra_cnt;
+	int		rb_cnt;
+
+	ra_cnt = 0;
+	rb_cnt = 0;
 	if (length(frame->a) < 3)
 	{
 		if (swap_check(frame, frame->a) == TRUE)
@@ -101,20 +106,20 @@ void	div_by_pivot_to_b(t_frame *frame)
 	while (min(frame->a) != frame->pivot_a)
 	{
 		if (frame->pivot_a <= frame->a->element)
-			rotate_a(frame);
+			ra_cnt += rotate_a(frame);
 		else
 			push_b(frame);
 	}
 	div_by_pivot_to_b(frame);
+	div_by_pivot_to_a(frame);
+}
+
+void	div_by_pivot_to_a(t_frame *frame)
+{
 	while (frame->b != NULL)
 	{
 		if (swap_check(frame, frame->b) == TRUE)
 			swap_b(frame);
 		push_a(frame);
-	}
+	}	
 }
-
-// void	div_by_pivot_to_a(t_frame *frame)
-// {
-	
-// }
