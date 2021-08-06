@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:02:38 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/06 15:05:45 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/06 15:45:12 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,36 @@ void	after_div_restore(t_frame *frame, int ra, int rb)
 
 void	div_by_pivot_to_b(t_frame *frame)
 {	
-	// int		ra_cnt;
-	// int		rb_cnt;
+	int		ra_cnt;
+	int		rb_cnt;
 
-	// ra_cnt = 0;
-	// rb_cnt = 0;
+	ra_cnt = 0;
+	rb_cnt = 0;
 	if (length(frame->a) < 3)
 	{
 		if (swap_check(frame, frame->a) == TRUE)
 			swap_a(frame);
 		return ;
 	}
-	frame->pivot_a = select_pivot(frame->a, 2);
-	if (length(frame->a) >= 5)
-		frame->pivot_b = select_pivot(frame->a, 4);
+	frame->pivot_a = select_pivot(frame->a, length(frame->a) / 2);
+	// if (length(frame->a) >= 5)
+		frame->pivot_b = select_pivot(frame->a, length(frame->a) / 4);
 	while (min(frame->a) != frame->pivot_a)
 	{
 		if (frame->pivot_a <= frame->a->element)
-			rotate_a(frame);
-			// ra_cnt += rotate_a(frame);
+			// rotate_a(frame);
+			ra_cnt += rotate_a(frame);
 		else
+		{
 			push_b(frame);
+			if (frame->pivot_b <= frame->b->element)
+				// rotate_b(frame);
+				rb_cnt += rotate_b(frame);
+		}
 	}
+	after_div_restore(frame, ra_cnt, rb_cnt);
 	div_by_pivot_to_b(frame);
-	div_by_pivot_to_a(frame);
+	// div_by_pivot_to_a(frame);
 }
 
 void	div_by_pivot_to_a(t_frame *frame)

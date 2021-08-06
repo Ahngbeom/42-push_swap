@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TESTER=./push_swap_tester/random_numbers
+TESTER=./minckim_push_swap_tester/random_numbers
 COMMAND="pa|pb|sa|sb|ss|ra|rb|rr|rra|rrb|rrr"
 
 ARG=$($TESTER $1 0)
