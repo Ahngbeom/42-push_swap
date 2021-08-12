@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/22 16:05:26 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/12 14:43:34 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char *argv[])
 	{
 		print_stack(frame);
 		ascending(frame);
+		// reverse_rotate_a(frame);
 	}
 	print_command(frame->cmd_list);
 	frame_free(frame);

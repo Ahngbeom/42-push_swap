@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/29 17:15:00 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/12 14:42:38 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void    reverse_rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
-    if (reverse_rotate_check(frame, frame->b))
-        reverse_rotate_r(frame);
+    // if (reverse_rotate_check(frame, frame->b))
+    //     reverse_rotate_r(frame);
     temp = last_element(frame->a);
-    temp->prev->next = NULL;
+    (temp->prev)->next = NULL;
     temp->prev = NULL;
     temp->next = frame->a;
     frame->a->prev = temp;
@@ -56,8 +56,8 @@ void    reverse_rotate_b(t_frame *frame)
 {
     t_stack *temp;
 
-    if (reverse_rotate_check(frame, frame->a))
-        reverse_rotate_r(frame);
+    // if (reverse_rotate_check(frame, frame->a))
+    //     reverse_rotate_r(frame);
     temp = last_element(frame->b);
     temp->prev->next = NULL;
     temp->prev = NULL;

@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:02:38 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/06 15:45:12 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/12 21:53:59 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	case_5(t_frame *frame)
 
 void	after_div_restore(t_frame *frame, int ra, int rb)
 {
+	// 초기에 인자로 들어온 스택에서 이미 정렬되어져있는 부분을 고정하기위함
 	int 	ra_cnt;
 	int		rb_cnt;
 
@@ -78,7 +79,7 @@ void	after_div_restore(t_frame *frame, int ra, int rb)
 	{
 		if (ra_cnt > 0 && rb_cnt <= 0)
 			reverse_rotate_a(frame);
-		else if (rb_cnt > 0 && ra_cnt <= 0)
+		else if (ra_cnt <= 0 && rb_cnt > 0)
 			reverse_rotate_b(frame);
 		else
 			reverse_rotate_r(frame);
@@ -87,46 +88,75 @@ void	after_div_restore(t_frame *frame, int ra, int rb)
 	}
 }
 
-void	div_by_pivot_to_b(t_frame *frame)
+void	div_by_pivot_to_b(t_frame *frame, int count)
 {	
-	int		ra_cnt;
-	int		rb_cnt;
-
-	ra_cnt = 0;
-	rb_cnt = 0;
-	if (length(frame->a) < 3)
+	int	i;
+	int	ra_cnt;
+	int	rb_cnt;
+	int pb_cnt;
+	
+	if (count < 3)
 	{
-		if (swap_check(frame, frame->a) == TRUE)
-			swap_a(frame);
+		case_3(frame);
 		return ;
 	}
-	frame->pivot_a = select_pivot(frame->a, length(frame->a) / 2);
-	// if (length(frame->a) >= 5)
-		frame->pivot_b = select_pivot(frame->a, length(frame->a) / 4);
-	while (min(frame->a) != frame->pivot_a)
+	frame->pivot_a = median(frame->a, length(frame->a));
+	frame->pivot_b = median(frame->a, length(frame->a) / 2);
+	i = 0;
+	ra_cnt = 0;
+	rb_cnt = 0;
+	pb_cnt = 0;
+	while (i++ < count)
 	{
 		if (frame->pivot_a <= frame->a->element)
-			// rotate_a(frame);
 			ra_cnt += rotate_a(frame);
 		else
 		{
-			push_b(frame);
-			if (frame->pivot_b <= frame->b->element)
-				// rotate_b(frame);
+			pb_cnt += push_b(frame);
+			// if (length(frame->b) > 2 && frame->pivot_b <= frame->b->element)
+			if (length(frame->b) >= 2 && frame->pivot_b <= frame->b->element)
 				rb_cnt += rotate_b(frame);
 		}
 	}
 	after_div_restore(frame, ra_cnt, rb_cnt);
-	div_by_pivot_to_b(frame);
-	// div_by_pivot_to_a(frame);
+	div_by_pivot_to_b(frame, ra_cnt);
+	div_by_pivot_to_a(frame, rb_cnt);
 }
 
-void	div_by_pivot_to_a(t_frame *frame)
+void	div_by_pivot_to_a(t_frame *frame, int count)
 {
-	while (frame->b != NULL)
+	int	i;
+	int	rb_cnt;
+	int	ra_cnt;
+	int pa_cnt;
+	
+	if (count < 3)
 	{
-		if (swap_check(frame, frame->b) == TRUE)
-			swap_b(frame);
+		case_3(frame);
 		push_a(frame);
-	}	
+		return ;
+	}
+	frame->pivot_b = median(frame->b, length(frame->b));
+	frame->pivot_a = median(frame->b, length(frame->b) / 2);
+	i = 0;
+	rb_cnt = 0;
+	ra_cnt = 0;
+	pa_cnt = 0;
+	while (i++ < count)
+	{
+		if (frame->pivot_b > frame->b->element)
+			rb_cnt += rotate_b(frame);
+		else
+		{
+			pa_cnt += push_a(frame);
+			// if (length(frame->b) > 2 && frame->pivot_b <= frame->b->element)
+			if (length(frame->a) > 2 && frame->pivot_a > frame->a->element)
+				ra_cnt += rotate_a(frame);
+		}
+	}
+	div_by_pivot_to_b(frame, pa_cnt - ra_cnt);
+	after_div_restore(frame, ra_cnt, rb_cnt);
+	div_by_pivot_to_b(frame, ra_cnt);
+	div_by_pivot_to_a(frame, rb_cnt);
+
 }
