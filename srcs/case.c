@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:02:38 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/13 21:07:52 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/13 22:09:58 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,12 +213,16 @@ void	a_to_b(t_frame *frame)
 			rotate_a(frame);
 	}
 	a_to_b(frame);
+
+
 	b_to_a(frame);
-	b_to_a(frame);
+	// b_to_a(frame);
 }
 
 void	b_to_a(t_frame *frame)
 {
+    printf("Error check?\n");
+
 	if (frame->b == NULL)
 		return ;
 	else if (length(frame->b) < 3)
@@ -231,7 +235,7 @@ void	b_to_a(t_frame *frame)
 	frame->pivot_b = median(frame->b, length(frame->b));
 	frame->pivot_a = median(frame->b, length(frame->b) / 2);
 
-	while (min(frame->b) != frame->pivot_b)
+	while (min(frame->b) > frame->pivot_b)
 	{
 		if (frame->b->element >= frame->pivot_b)
 		{
@@ -242,4 +246,5 @@ void	b_to_a(t_frame *frame)
 		else
 			rotate_b(frame);
 	}
+	b_to_a(frame);
 }

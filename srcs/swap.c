@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:47:29 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/13 16:11:13 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/13 22:09:01 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int     swap_check(t_frame *frame, t_stack *stack)
 {
-    printf("Error check?\n");
-
     if (length(stack) < 2)
         return (FALSE);
     if (frame->a == stack)
