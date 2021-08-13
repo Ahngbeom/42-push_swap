@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:47:29 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/22 15:58:07 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/13 16:11:13 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int     swap_check(t_frame *frame, t_stack *stack)
 {
+    printf("Error check?\n");
+
     if (length(stack) < 2)
         return (FALSE);
     if (frame->a == stack)
@@ -41,10 +43,10 @@ void     swap_a(t_frame *frame)
 {
     t_stack     *temp;
 
-    if (swap_check(frame, frame->b))
-        swap_s(frame);
-    else
-    {
+    // if (swap_check(frame, frame->b))
+    //     swap_s(frame);
+    // else
+    // {
         temp = frame->a->next;
         frame->a->prev = temp;
         frame->a->next = temp->next;
@@ -53,17 +55,17 @@ void     swap_a(t_frame *frame)
         frame->a = temp;
         add_command(frame, "sa");
         print_stack(frame);
-    }
+    // }
 }
 
 void       swap_b(t_frame *frame)
 {
     t_stack     *temp;
 
-    if (swap_check(frame, frame->a))
-        swap_s(frame);
-    else
-    {
+    // if (swap_check(frame, frame->a))
+    //     swap_s(frame);
+    // else
+    // {
         temp = frame->b->next;
         frame->b->prev = temp;
         frame->b->next = temp->next;
@@ -72,7 +74,7 @@ void       swap_b(t_frame *frame)
         frame->b = temp;
         add_command(frame, "sb");
         print_stack(frame);
-    }
+    // }
 }
 
 void       swap_s(t_frame *frame)

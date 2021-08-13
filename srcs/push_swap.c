@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/12 14:43:34 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/13 16:42:17 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int	main(int argc, char *argv[])
 	frame = frame_init();
 	stack_init(frame, argv);
 	
-	if (check_asc(frame->a) == TRUE && frame->b == NULL)
-		return (0);
-	else
-	{
+	// if (check_asc(frame->a) == TRUE && frame->b == NULL)
+	// 	return (0);
+	// else
+	// {
 		print_stack(frame);
-		ascending(frame);
+		a_to_b(frame);
+		// ascending(frame);
 		// reverse_rotate_a(frame);
-	}
+	// }
 	print_command(frame->cmd_list);
 	frame_free(frame);
 	return (0);

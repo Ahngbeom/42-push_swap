@@ -6,15 +6,15 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:02:38 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/12 21:53:59 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/13 21:07:52 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	case_3(t_frame *frame)
+void	case_3(t_frame *frame, t_stack *stack)
 {
-	if (frame->a != NULL && length(frame->a) == 3)
+	if (frame->a == stack)
 	{
 		while (check_asc(frame->a) == FALSE)
 		{
@@ -26,7 +26,8 @@ void	case_3(t_frame *frame)
 				swap_a(frame);
 		}
 	}
-	if (frame->b != NULL && length(frame->b) == 3)
+	
+	if (frame->b == stack)
 	{
 		while (check_desc(frame->b) == FALSE)
 		{
@@ -54,7 +55,7 @@ void	case_5(t_frame *frame)
 			else 
 				rotate_a(frame);
 		}
-		case_3(frame);
+		case_3(frame, frame->a);
 		while (length(frame->a) != 5)
 		{
 			if (check_desc(frame->b) == FALSE)
@@ -95,9 +96,12 @@ void	div_by_pivot_to_b(t_frame *frame, int count)
 	int	rb_cnt;
 	int pb_cnt;
 	
+	printf("A to B (count : %d)\n", count);
 	if (count < 3)
 	{
-		case_3(frame);
+		if (swap_check(frame, frame->a) == TRUE)
+			swap_a(frame);
+		printf("END\n");
 		return ;
 	}
 	frame->pivot_a = median(frame->a, length(frame->a));
@@ -118,9 +122,19 @@ void	div_by_pivot_to_b(t_frame *frame, int count)
 				rb_cnt += rotate_b(frame);
 		}
 	}
+	printf("END\n");
+	
 	after_div_restore(frame, ra_cnt, rb_cnt);
+
+	printf("div_by_pivot_to_b(frame, ra_cnt : %d);\n", ra_cnt);
 	div_by_pivot_to_b(frame, ra_cnt);
+	
+	printf("div_by_pivot_to_a(frame, rb_cnt : %d);\n", rb_cnt);
 	div_by_pivot_to_a(frame, rb_cnt);
+	
+	printf("div_by_pivot_to_a(frame, pb_cnt - rb_cnt : %d - %d);\n", \
+				pb_cnt, rb_cnt);
+	div_by_pivot_to_a(frame, pb_cnt - rb_cnt);
 }
 
 void	div_by_pivot_to_a(t_frame *frame, int count)
@@ -130,9 +144,11 @@ void	div_by_pivot_to_a(t_frame *frame, int count)
 	int	ra_cnt;
 	int pa_cnt;
 	
+	printf("B to A (count : %d)\n", count);
 	if (count < 3)
 	{
-		case_3(frame);
+		if (swap_check(frame, frame->b) == TRUE)
+			swap_b(frame);
 		push_a(frame);
 		return ;
 	}
@@ -149,14 +165,81 @@ void	div_by_pivot_to_a(t_frame *frame, int count)
 		else
 		{
 			pa_cnt += push_a(frame);
-			// if (length(frame->b) > 2 && frame->pivot_b <= frame->b->element)
 			if (length(frame->a) > 2 && frame->pivot_a > frame->a->element)
 				ra_cnt += rotate_a(frame);
 		}
 	}
+	printf("END\n");
+
+	printf("div_by_pivot_to_b(frame, pa_cnt - ra_cnt : %d - %d);\n", \
+					pa_cnt, ra_cnt);
 	div_by_pivot_to_b(frame, pa_cnt - ra_cnt);
+	
 	after_div_restore(frame, ra_cnt, rb_cnt);
+	
+	printf("div_by_pivot_to_b(frame, ra_cnt : %d);\n", ra_cnt);
 	div_by_pivot_to_b(frame, ra_cnt);
+	
+	printf("div_by_pivot_to_a(frame, rb_cnt : %d);\n", rb_cnt);
 	div_by_pivot_to_a(frame, rb_cnt);
 
+}
+
+// void	fix_range(t_frame *frame)
+// {
+	
+// }
+
+void	a_to_b(t_frame *frame)
+{
+	if (length(frame->a) < 3)
+	{
+		if (frame->a->element > frame->a->next->element)
+			swap_a(frame);
+		return ;
+	}
+	frame->pivot_a = median(frame->a, length(frame->a));
+	frame->pivot_b = median(frame->a, length(frame->a) / 2);
+
+	while (min(frame->a) != frame->pivot_a)
+	{
+		if (frame->a->element < frame->pivot_a)
+		{
+			push_b(frame);
+			if (length(frame->b) >= 2 && frame->b->element < frame->pivot_b)
+				rotate_b(frame);
+		}
+		else
+			rotate_a(frame);
+	}
+	a_to_b(frame);
+	b_to_a(frame);
+	b_to_a(frame);
+}
+
+void	b_to_a(t_frame *frame)
+{
+	if (frame->b == NULL)
+		return ;
+	else if (length(frame->b) < 3)
+	{
+		if (length(frame->b) >= 2 && frame->b->element < frame->b->next->element)
+			swap_b(frame);
+		push_a(frame);
+		return ;
+	}
+	frame->pivot_b = median(frame->b, length(frame->b));
+	frame->pivot_a = median(frame->b, length(frame->b) / 2);
+
+	while (min(frame->b) != frame->pivot_b)
+	{
+		if (frame->b->element >= frame->pivot_b)
+		{
+			push_a(frame);
+			if (length(frame->a) >= 2 && frame->a->element < frame->pivot_a)
+				rotate_a(frame);
+		}
+		else
+			rotate_b(frame);
+	}
 }

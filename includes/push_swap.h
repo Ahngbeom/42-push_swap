@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/12 20:36:56 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/13 17:06:06 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,13 @@ int     check_desc(t_stack *stack);
 void    ascending(t_frame *frame);
 void    descending(t_frame *frame);
 
-void	case_3(t_frame *frame);
+void	case_3(t_frame *frame, t_stack *stack);
 void	case_5(t_frame *frame);
 void	div_by_pivot_to_b(t_frame *frame, int count);
 void	div_by_pivot_to_a(t_frame *frame, int count);
+void	a_to_b(t_frame *frame);
+void	b_to_a(t_frame *frame);
+
 
 int    push_a(t_frame *frame);
 int    push_b(t_frame *frame);
