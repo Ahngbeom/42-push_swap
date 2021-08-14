@@ -6,13 +6,13 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 16:29:09 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/04 15:36:17 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/14 17:13:29 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     select_pivot(t_stack *stack, int max_seq)
+int     select_pivot(t_stack *stack, int limit)
 {
     int     i;
     int     j;
@@ -28,7 +28,7 @@ int     select_pivot(t_stack *stack, int max_seq)
         ptr = ptr->next;
     }
     i = 0;
-    while (i < length(stack) - 1)
+    while (i < limit)
     {
         j = i + 1;
         while (j < length(stack))
@@ -43,5 +43,5 @@ int     select_pivot(t_stack *stack, int max_seq)
         }
         i++;
     }
-    return (arr[max_seq]);
+    return (arr[limit / 2]);
 }

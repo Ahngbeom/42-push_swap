@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/13 17:06:06 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/14 17:13:54 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_stack	*mid_element(t_stack *stack);
 int     min(t_stack *stack);
 int     max(t_stack *stack);
 int     median(t_stack *stack, int size);
-int     select_pivot(t_stack *stack, int max_seq);
+int     select_pivot(t_stack *stack, int limit);
 
 int     check_asc(t_stack *stack);
 int     check_desc(t_stack *stack);
@@ -93,8 +93,8 @@ void	case_3(t_frame *frame, t_stack *stack);
 void	case_5(t_frame *frame);
 void	div_by_pivot_to_b(t_frame *frame, int count);
 void	div_by_pivot_to_a(t_frame *frame, int count);
-void	a_to_b(t_frame *frame);
-void	b_to_a(t_frame *frame);
+void	a_to_b(t_frame *frame, int count);
+void	b_to_a(t_frame *frame, int count);
 
 
 int    push_a(t_frame *frame);
