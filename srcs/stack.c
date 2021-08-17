@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 13:51:59 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/28 14:41:03 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/15 14:25:09 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,20 @@ void    stack_init(t_frame *frame, char **argv)
 		stack->next = NULL;
 		// print_stack(frame->a, frame->b);
 		i++;
+	}
+}
+
+void	fix_element(t_frame *frame)
+{
+	t_stack *ptr;
+
+	if (frame->a != NULL)
+	{
+		ptr = frame->a;
+		while (ptr != NULL)
+		{
+			if ((ptr->next->element - ptr->element) == 1)
+				return ;
+		}
 	}
 }

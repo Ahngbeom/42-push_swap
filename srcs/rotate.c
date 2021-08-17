@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/14 17:28:29 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/16 20:16:40 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int     rotate_check(t_frame *frame, t_stack *stack)
     {
         if (stack->element == max(stack))
             return (TRUE);
-        else if (frame->pivot_a < stack->element)
+        else if (frame->big_pivot < stack->element)
             return (TRUE);
         else
             return (FALSE);
@@ -29,7 +29,7 @@ int     rotate_check(t_frame *frame, t_stack *stack)
     {
         if (stack->element == min(stack))
             return (TRUE);
-        else if (frame->pivot_b > stack->element)
+        else if (frame->small_pivot > stack->element)
             return (TRUE);
         else
             return (FALSE);
@@ -42,6 +42,8 @@ int    rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
+    if (length(frame->a) < 2)
+        return (1); 
     temp = frame->a;
     temp->prev = last_element(frame->a);
     frame->a = frame->a->next;
@@ -57,6 +59,8 @@ int    rotate_b(t_frame *frame)
 {
     t_stack *temp;
     
+    if (length(frame->b) < 2)
+        return (1);
     temp = frame->b;
     temp->prev = last_element(frame->b);
     frame->b = frame->b->next;
@@ -72,6 +76,9 @@ void    rotate_r(t_frame *frame)
 {
     t_stack *temp;
     
+    if (length(frame->a) < 2 || length(frame->b) < 2)
+        return ;
+
     temp = frame->a;
     temp->prev = last_element(frame->a);
     frame->a = frame->a->next;

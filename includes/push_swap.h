@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/14 17:13:54 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/17 17:18:48 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ struct	s_frame
 	t_stack	*a;
 	t_stack	*b;
 
-	int		pivot_a;
-	int		pivot_b;
+	int		big_pivot;
+	int		small_pivot;
 
 	t_command	*cmd_list;
 };
@@ -72,6 +72,7 @@ t_frame    *frame_init();
 void        frame_free(t_frame *frame);
 
 void    stack_init(t_frame *frame, char **argv);
+void	fix_element(t_frame *frame);
 
 void    add_command(t_frame *frame, char *cmd);
 int     count_command(t_frame *frame, char *find);
@@ -91,8 +92,6 @@ void    descending(t_frame *frame);
 
 void	case_3(t_frame *frame, t_stack *stack);
 void	case_5(t_frame *frame);
-void	div_by_pivot_to_b(t_frame *frame, int count);
-void	div_by_pivot_to_a(t_frame *frame, int count);
 void	a_to_b(t_frame *frame, int count);
 void	b_to_a(t_frame *frame, int count);
 

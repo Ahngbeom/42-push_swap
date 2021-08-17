@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/12 14:42:38 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/16 20:20:47 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int     reverse_rotate_check(t_frame *frame, t_stack *stack)
         return (FALSE);
     if (frame->a == stack && check_asc(stack) == FALSE)
     {
-        if (frame->pivot_a > last_element(stack)->element)
+        if (frame->big_pivot > last_element(stack)->element)
             return (TRUE);
         else
             return (FALSE);
     }
     else if (frame->b == stack && check_desc(stack) == FALSE)
     {
-        if (frame->pivot_b < last_element(stack)->element)
+        if (frame->small_pivot < last_element(stack)->element)
             return (TRUE);
         else if (max(stack) == last_element(stack)->element)
             return (TRUE);
@@ -40,8 +40,8 @@ void    reverse_rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
-    // if (reverse_rotate_check(frame, frame->b))
-    //     reverse_rotate_r(frame);
+    if (length(frame->a) < 2)
+        return ;
     temp = last_element(frame->a);
     (temp->prev)->next = NULL;
     temp->prev = NULL;
@@ -56,8 +56,8 @@ void    reverse_rotate_b(t_frame *frame)
 {
     t_stack *temp;
 
-    // if (reverse_rotate_check(frame, frame->a))
-    //     reverse_rotate_r(frame);
+    if (length(frame->b) < 2)
+        return ;
     temp = last_element(frame->b);
     temp->prev->next = NULL;
     temp->prev = NULL;
@@ -72,6 +72,17 @@ void    reverse_rotate_r(t_frame *frame)
 {
     t_stack *temp;
     
+    if (length(frame->a) < 2 && length(frame->b) >= 2)
+    {
+        reverse_rotate_b(frame);
+        return ;
+    }
+    if (length(frame->b) >= 2 && length(frame->b) < 2)
+    {
+        reverse_rotate_a(frame);
+        return ;
+    }
+
     temp = last_element(frame->a);
     temp->prev->next = NULL;
     temp->prev = NULL;
