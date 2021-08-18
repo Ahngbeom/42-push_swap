@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 16:42:19 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/03 15:23:22 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/18 12:00:12 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ t_stack     *mid_element(t_stack *stack)
     return (ptr);
 }
 
-int     min(t_stack *stack)
+int     min(t_stack *stack, int range)
 {
     int         min;
     t_stack     *ptr;
     
     min = stack->element;
     ptr = stack->next;
-    while (ptr != NULL)
+    while (ptr != NULL && --range)
     {
         if (min > ptr->element)
             min = ptr->element;
@@ -50,14 +50,14 @@ int     min(t_stack *stack)
     return (min);
 }
 
-int     max(t_stack *stack)
+int     max(t_stack *stack, int range)
 {
     int         max;
     t_stack     *ptr;
     
     max = stack->element;
     ptr = stack->next;
-    while (ptr != NULL)
+    while (ptr != NULL && --range)
     {
         if (max < ptr->element)
             max = ptr->element;
@@ -66,7 +66,7 @@ int     max(t_stack *stack)
     return (max);
 }
 
-int     median(t_stack *stack, int size)
+int     median(t_stack *stack, int range)
 {
     int     arr[length(stack)];
     t_stack *ptr;
@@ -100,5 +100,5 @@ int     median(t_stack *stack, int size)
         }
         i++;
     }
-    return (arr[size / 2]);
+    return (arr[range / 2]);
 }

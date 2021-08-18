@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/17 17:18:48 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/18 10:27:44 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int     count_command(t_frame *frame, char *find);
 int     length(t_stack *stack);
 t_stack	*last_element(t_stack *stack);
 t_stack	*mid_element(t_stack *stack);
-int     min(t_stack *stack);
-int     max(t_stack *stack);
-int     median(t_stack *stack, int size);
+int     min(t_stack *stack, int range);
+int     max(t_stack *stack, int range);
+int     median(t_stack *stack, int range);
 int     select_pivot(t_stack *stack, int limit);
 
 int     check_asc(t_stack *stack);
@@ -110,8 +110,8 @@ int    rotate_b(t_frame *frame);
 void    rotate_r(t_frame *frame);
 
 int    reverse_rotate_check(t_frame *frame, t_stack *stack);
-void    reverse_rotate_a(t_frame *frame);
-void    reverse_rotate_b(t_frame *frame);
+int    reverse_rotate_a(t_frame *frame);
+int    reverse_rotate_b(t_frame *frame);
 void    reverse_rotate_r(t_frame *frame);
 
 #endif

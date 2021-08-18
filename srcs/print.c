@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 13:59:49 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/12 14:42:51 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/18 19:23:47 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    print_command(t_command *cmd_list)
 
 void    print_stack(t_frame *frame)
 {
-    // (void)frame;
+    (void)frame;
     t_stack     *a;
     t_stack     *b;
     t_command   *last_cmd;
@@ -56,7 +56,7 @@ void    print_stack(t_frame *frame)
     a = frame->a;
     b = frame->b;
     // cmd_list = frame->cmd_list;
-    printf("\e[1;92mA\e[0m\t\t\e[1;96mB\e[0m\t\t[pivot(\e[1;92mA\e[0m) : \e[1;30;102m %d \e[0m, pivot(\e[1;96mB\e[0m) : \e[1;30;46m %d \e[0m]\n", frame->pivot_a, frame->pivot_b);
+    printf("\e[1;92mA\e[0m\t\t\e[1;96mB\e[0m\t\t[pivot(\e[1;92mA\e[0m) : \e[1;30;102m %d \e[0m, pivot(\e[1;96mB\e[0m) : \e[1;30;46m %d \e[0m]\n", frame->big_pivot, frame->small_pivot);
     printf("=====================");
     if ((last_cmd = last_command(frame->cmd_list)) != NULL)
         printf("\t\t\e[1;33m%s\e[0m\n", last_cmd->cmd);
@@ -91,5 +91,5 @@ void    print_stack(t_frame *frame)
             printf("\n");
 	}
     printf("\n");
-    // usleep(5000);
+    // sleep(1);
 }

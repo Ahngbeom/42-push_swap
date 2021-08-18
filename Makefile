@@ -6,7 +6,7 @@
 #    By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/07/22 19:49:31 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/18 12:54:47 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIB_DIR			= ./libft
 LINK_LIBFT		= -Llibft -lft
 
 SRCS_DIR		= ./srcs/
-SRCS_NAME		= push_swap.c print.c \
+SRCS_NAME		= push_swap.c a_to_b.c b_to_a.c print.c \
 					frame.c stack.c command.c check.c \
 					sort.c length.c element.c case.c pivot.c \
 					swap.c push.c rotate.c reverse_rotate.c

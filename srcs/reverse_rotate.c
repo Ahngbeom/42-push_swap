@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/16 20:20:47 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/18 10:42:46 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int     reverse_rotate_check(t_frame *frame, t_stack *stack)
     {
         if (frame->small_pivot < last_element(stack)->element)
             return (TRUE);
-        else if (max(stack) == last_element(stack)->element)
+        else if (max(stack, length(frame->b)) == last_element(stack)->element)
             return (TRUE);
         else
             return (FALSE);
@@ -36,12 +36,12 @@ int     reverse_rotate_check(t_frame *frame, t_stack *stack)
         return (FALSE);
 }
 
-void    reverse_rotate_a(t_frame *frame)
+int    reverse_rotate_a(t_frame *frame)
 {
     t_stack *temp;
     
     if (length(frame->a) < 2)
-        return ;
+        return (1);
     temp = last_element(frame->a);
     (temp->prev)->next = NULL;
     temp->prev = NULL;
@@ -50,14 +50,15 @@ void    reverse_rotate_a(t_frame *frame)
     frame->a = temp;
     add_command(frame, "rra");
     print_stack(frame);
+    return (1);
 }
 
-void    reverse_rotate_b(t_frame *frame)
+int    reverse_rotate_b(t_frame *frame)
 {
     t_stack *temp;
 
     if (length(frame->b) < 2)
-        return ;
+        return (1);
     temp = last_element(frame->b);
     temp->prev->next = NULL;
     temp->prev = NULL;
@@ -66,6 +67,7 @@ void    reverse_rotate_b(t_frame *frame)
     frame->b = temp;
     add_command(frame, "rrb");
     print_stack(frame);
+    return (1);
 }
 
 void    reverse_rotate_r(t_frame *frame)
