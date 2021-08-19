@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/16 20:16:40 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/19 13:11:31 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int     rotate_check(t_frame *frame, t_stack *stack)
         return (FALSE);
     if (frame->a == stack && check_asc(stack) == FALSE)
     {
-        if (stack->element == max(stack))
+        if (stack->element == max(stack, length(frame->a)))
             return (TRUE);
         else if (frame->big_pivot < stack->element)
             return (TRUE);
@@ -27,7 +27,7 @@ int     rotate_check(t_frame *frame, t_stack *stack)
     }
     else if (frame->b == stack && check_desc(stack) == FALSE)
     {
-        if (stack->element == min(stack))
+        if (stack->element == min(stack, length(frame->b)))
             return (TRUE);
         else if (frame->small_pivot > stack->element)
             return (TRUE);

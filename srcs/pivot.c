@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 16:29:09 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/14 17:13:29 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/19 23:21:56 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ int     select_pivot(t_stack *stack, int limit)
         }
         i++;
     }
-    return (arr[limit / 2]);
+    return (arr[(limit - 1) / 2]);
 }
