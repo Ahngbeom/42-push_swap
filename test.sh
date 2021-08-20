@@ -1,12 +1,12 @@
 #!/bin/bash
 
-TESTER=./minckim_push_swap_tester/random_numbers
+TESTER=./test/minckim_push_swap_tester/random_numbers
 COMMAND="pa|pb|sa|sb|ss|ra|rb|rr|rra|rrb|rrr"
 
 ARG=$($TESTER $1 0)
 
 clear
-make all
+make all 
 
 echo 
 echo -e "Arguments : \e[30;105m $ARG\e[0m"
@@ -23,6 +23,11 @@ CHECKER=$(./push_swap $ARG | grep -woP $COMMAND | ./checker_linux $ARG)
 
 ## Mac
 # CHECKER=$(./push_swap $ARG | grep -oP $COMMAND | ./checker_Mac $ARG)
+
+## My Checker
+make bonus
+CHECKER=$(./push_swap $ARG | grep -woP $COMMAND | ./bonus/checker $ARG)
+
 
 if [[ $CHECKER == "OK" ]]; then
     echo -ne "\e[30;103mChecker : \e[1;32m$CHECKER ✔️\e[0m\t"

@@ -6,7 +6,7 @@
 #    By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/20 20:58:08 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/20 22:53:38 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,19 @@ SRCS_NAME		= push_swap.c a_to_b.c b_to_a.c \
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_NAME))
 OBJS			= $(SRCS:.c=.o)
 
+BONUS_SRCS		= ./bonus/checker.c
+
 all				: $(PUSH_SWAP)
+
+bonus			: $(CHECKER)
 
 $(PUSH_SWAP) 	: $(OBJS)
 				$(MAKE) all -C $(LIB_DIR)
 				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(LINK_LIBFT) -o $@
-	
+
+$(CHECKER)		: $(BONUS_SRCS) 
+				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(LINK_LIBFT) -o $@
+
 .c.o			:
 				$(CC) $(CFLAGS) $(INCFLAGS) -c $< -o $@
 
