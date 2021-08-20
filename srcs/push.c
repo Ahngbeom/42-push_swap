@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:25:48 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/18 12:29:13 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 20:59:53 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int     push_a(t_frame *frame)
     frame->a = frame->b;
     frame->b = temp;
     add_command(frame, "pa");
-    print_stack(frame);
     return (1);
 }
 
@@ -40,7 +39,6 @@ int     push_b(t_frame *frame)
     frame->b = frame->a;
     frame->a = temp;
     add_command(frame, "pb");
-    print_stack(frame);
     return (1);
 }
 

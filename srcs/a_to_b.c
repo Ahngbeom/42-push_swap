@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:49:27 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/18 19:21:36 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 18:32:47 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static  int    sorting(t_frame *frame, int range)
 {
+	// printf("range : %d\n", range);
     if (range <= 3)
 	{
 		// if (range == 1)
@@ -28,13 +29,13 @@ static  int    sorting(t_frame *frame, int range)
         // else 
         else if (range == 3)
         {
-            if (length(frame->b) == 3)
+            if (length(frame->a) == 3)
             {
-                if (check_asc(frame->a) == FALSE)
+                while (check_asc(frame->a) == FALSE)
                 {
-                    if (frame->a->element == max(frame->a, length(frame->a)))
+                    if (frame->a->element == max(frame->a, range))
                         rotate_a(frame);
-                    else if (last_element(frame->a)->element == min(frame->a, length(frame->a)))
+                    else if (frame->a->next->element == max(frame->a, range))
                         reverse_rotate_a(frame);
                     else
                         swap_a(frame);
@@ -42,26 +43,30 @@ static  int    sorting(t_frame *frame, int range)
             }
             else
             {
-               if (frame->a->element == max(frame->a, range))
+				// printf("max of range : %d\n", max(frame->a, range));
+               	if (frame->a->element == max(frame->a, range))
 				{
+					// printf("max : index 0\n");
 					swap_a(frame);
 					rotate_a(frame);
 					swap_a(frame);
 					reverse_rotate_a(frame);
-					if (frame->a->next->element == min(frame->a, range))
-						swap_b(frame);
+					if (frame->a->element > frame->a->next->element)
+						swap_a(frame);
 				}
 				else if (frame->a->next->element == max(frame->a, range))
 				{
+					// printf("max : index 1\n");
 					rotate_a(frame);
 					swap_a(frame);
 					reverse_rotate_a(frame);
-					if (frame->a->next->element == min(frame->a, range))
+					if (frame->a->element > frame->a->next->element)
 						swap_a(frame);
 				}
 				else if (frame->a->next->next->element == max(frame->a, range))
 				{
-					if (frame->a->next->element == min(frame->a, range))
+					// printf("max : index 2\n");
+					if (frame->a->element > frame->a->next->element)
 						swap_a(frame);
 				}
             }
@@ -73,7 +78,7 @@ static  int    sorting(t_frame *frame, int range)
         return (FALSE);
 }
 
-void	a_to_b(t_frame *frame, int range)
+void	a_to_b(t_frame *frame, int range, void (*call_out_func))
 {
 	int	i;
 	int ra_cnt = 0;
@@ -83,8 +88,8 @@ void	a_to_b(t_frame *frame, int range)
 	if (sorting(frame, range) == TRUE)
 		return ;
 	
-	frame->big_pivot = select_pivot(frame->a, range);
-	frame->small_pivot = select_pivot(frame->a, range / 2);
+	frame->big_pivot = select_big_pivot(frame->a, range);
+	frame->small_pivot = select_small_pivot(frame->a, range);
 
 	while (range--)
 	{
@@ -99,19 +104,29 @@ void	a_to_b(t_frame *frame, int range)
 	}
 
 	i = 0;
-	// while (i < ra_cnt || i < rb_cnt)
-	while (i < rb_cnt)
+	if (call_out_func == NULL)
 	{
-		// if (i < ra_cnt && i >= rb_cnt)
-		// 	reverse_rotate_a(frame);
-		// else if (i >= ra_cnt && i < rb_cnt)
+		// printf("call out function is NULL !\n");
+		while (i++ < rb_cnt)
 			reverse_rotate_b(frame);
-		// else
-		// 	reverse_rotate_r(frame);
-		i++;
+	}
+	else
+	{
+		// printf("call out function is NOT NULL !\n");
+		while (i < ra_cnt || i < rb_cnt)
+		{
+			// printf("check ra : %d, rb : %d\n", ra_cnt, rb_cnt);
+			if (i >= rb_cnt || length(frame->b) < 2)
+				reverse_rotate_a(frame);
+			else if (i >= ra_cnt || length(frame->a) < 2)
+				reverse_rotate_b(frame);
+			else
+				reverse_rotate_r(frame);
+			i++;
+		}
 	}
 	
-	a_to_b(frame, ra_cnt);
+	a_to_b(frame, ra_cnt, call_out_func);
 	b_to_a(frame, rb_cnt);
     // printf("range (pb_cnt - rb_cnt): %d\n", pb_cnt - rb_cnt);
 	b_to_a(frame, pb_cnt - rb_cnt);

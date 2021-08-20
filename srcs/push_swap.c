@@ -6,25 +6,36 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/18 03:10:48 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 21:34:24 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void    print_command(t_command *cmd_list)
+{
+    t_command *ptr;
+
+	if (cmd_list == NULL)
+		return ;
+    ptr = cmd_list;
+    while (ptr != NULL)
+    {
+        ft_putstr_fd(ptr->cmd, 1);
+		ft_putstr_fd("\n", 1);
+        ptr = ptr->next;
+    }
+}
+
 int	main(int argc, char *argv[])
 {
 	t_frame *frame;
 
-	
 	invalid_arg(argc, argv);
 	frame = frame_init();
 	stack_init(frame, argv);
-	
-	print_stack(frame);
-	if (check_asc(frame->a) == TRUE && frame->b == NULL)
-		return (0);
-	a_to_b(frame, length(frame->a));
+	if (check_asc(frame->a) == FALSE)
+		a_to_b(frame, length(frame->a), NULL);
 	print_command(frame->cmd_list);
 	frame_free(frame);
 	return (0);

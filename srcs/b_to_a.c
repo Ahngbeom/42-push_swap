@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:54:02 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/18 19:21:21 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 16:03:17 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	b_to_a(t_frame *frame, int range)
 	if (sorting(frame, range) == TRUE)
         return ;
 	
-	frame->big_pivot = select_pivot(frame->b, range);
-	frame->small_pivot = select_pivot(frame->b, range / 2);
+	frame->big_pivot = select_big_pivot(frame->b, range);
+	frame->small_pivot = select_small_pivot(frame->b, range);
 
 	while (range--)
 	{
@@ -99,17 +99,18 @@ void	b_to_a(t_frame *frame, int range)
 		}
 	}
     // printf("range (pa_cnt - ra_cnt): %d\n", pa_cnt - ra_cnt);
-	a_to_b(frame, pa_cnt - ra_cnt);
+	a_to_b(frame, pa_cnt - ra_cnt, b_to_a);
 	while (i < ra_cnt || i < rb_cnt)
 	{
-		if (i >= rb_cnt)
+		// printf("check ra : %d, rb : %d\n", ra_cnt, rb_cnt);
+		if (i >= rb_cnt || length(frame->b) < 2)
 			reverse_rotate_a(frame);
-		else if (i >= ra_cnt)
+		else if (i >= ra_cnt || length(frame->a) < 2)
 			reverse_rotate_b(frame);
 		else
 			reverse_rotate_r(frame);
 		i++;
 	}
-	a_to_b(frame, ra_cnt);
+	a_to_b(frame, ra_cnt, b_to_a);
 	b_to_a(frame, rb_cnt);
 }

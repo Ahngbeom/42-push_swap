@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:54:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/20 20:34:11 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 21:30:39 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 t_frame    *frame_init()
 {
     t_frame *frame;
-    if (!(frame = (t_frame *)malloc(sizeof(t_frame))))
+   
+    frame = (t_frame *)malloc(sizeof(t_frame));
+    if (frame == NULL)
+    {
+        ft_putstr_fd("Error:::Frame Initializing Error\n", 1);
         exit(1);
+    }
     frame->a = NULL;
     frame->b = NULL;
     frame->cmd_list = NULL;
@@ -25,7 +30,6 @@ t_frame    *frame_init()
 
 void        frame_free(t_frame *frame)
 {
-    // t_stack *temp;
     void    *temp;
     
     while (frame->a != NULL)
@@ -43,7 +47,8 @@ void        frame_free(t_frame *frame)
     while (frame->cmd_list != NULL)
     {
         temp = frame->cmd_list->next;
-        free(frame->b);
+        free(frame->cmd_list->cmd);
+        free(frame->cmd_list);
         frame->cmd_list = temp;
     }
     free(frame);

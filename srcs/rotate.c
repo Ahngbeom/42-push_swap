@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/19 13:11:31 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 21:00:03 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int    rotate_a(t_frame *frame)
     last_element(frame->a)->next = temp;
     temp->next = NULL;
     add_command(frame, "ra");
-    print_stack(frame);
     return (1);
 }
 
@@ -68,7 +67,6 @@ int    rotate_b(t_frame *frame)
     last_element(frame->b)->next = temp;
     temp->next = NULL;
     add_command(frame, "rb");
-    print_stack(frame);
     return (1);
 }
 
@@ -77,7 +75,13 @@ void    rotate_r(t_frame *frame)
     t_stack *temp;
     
     if (length(frame->a) < 2 || length(frame->b) < 2)
-        return ;
+    {
+        if (length(frame->a) >= 2 && length(frame->b) < 2)
+            rotate_a(frame);
+        else if (length(frame->a) < 2 && length(frame->b) >= 2)
+            rotate_b(frame);
+        return ;    
+    }
 
     temp = frame->a;
     temp->prev = last_element(frame->a);
@@ -94,5 +98,4 @@ void    rotate_r(t_frame *frame)
     temp->next = NULL;
 
     add_command(frame, "rr");
-    print_stack(frame);
 }

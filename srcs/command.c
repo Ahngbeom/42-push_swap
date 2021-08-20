@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:12:46 by bahn              #+#    #+#             */
-/*   Updated: 2021/07/28 13:29:30 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 21:34:13 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static  t_command   *create_command(char *cmd)
 {
     t_command   *new;
 
-    if (!(new = (t_command*)malloc(sizeof(t_command))))
+    if (!(new = (t_command *)malloc(sizeof(t_command))))
         return (NULL);
     new->cmd = ft_strdup(cmd);
     new->prev = NULL;

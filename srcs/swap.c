@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:47:29 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/13 22:09:01 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 21:03:11 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int     swap_check(t_frame *frame, t_stack *stack)
     }
     else
     {
-        printf("ERROR\n");
+        ft_putstr_fd("ERROR\n", 1);
         exit(1);
     }
 }
@@ -40,39 +40,31 @@ int     swap_check(t_frame *frame, t_stack *stack)
 void     swap_a(t_frame *frame)
 {
     t_stack     *temp;
-
-    // if (swap_check(frame, frame->b))
-    //     swap_s(frame);
-    // else
-    // {
-        temp = frame->a->next;
-        frame->a->prev = temp;
-        frame->a->next = temp->next;
-        temp->prev = NULL;
-        temp->next = frame->a;
-        frame->a = temp;
-        add_command(frame, "sa");
-        print_stack(frame);
-    // }
+    
+    temp = frame->a->next;
+    frame->a->prev = temp;
+    frame->a->next = temp->next;
+    if (temp->next != NULL)
+        temp->next->prev = frame->a;
+    temp->prev = NULL;
+    temp->next = frame->a;
+    frame->a = temp;
+    add_command(frame, "sa");
 }
 
 void       swap_b(t_frame *frame)
 {
     t_stack     *temp;
 
-    // if (swap_check(frame, frame->a))
-    //     swap_s(frame);
-    // else
-    // {
-        temp = frame->b->next;
-        frame->b->prev = temp;
-        frame->b->next = temp->next;
-        temp->prev = NULL;
-        temp->next = frame->b;
-        frame->b = temp;
-        add_command(frame, "sb");
-        print_stack(frame);
-    // }
+    temp = frame->b->next;
+    frame->b->prev = temp;
+    frame->b->next = temp->next;
+    if (temp->next != NULL)
+        temp->next->prev = frame->b;
+    temp->prev = NULL;
+    temp->next = frame->b;
+    frame->b = temp;
+    add_command(frame, "sb");
 }
 
 void       swap_s(t_frame *frame)
@@ -93,5 +85,4 @@ void       swap_s(t_frame *frame)
     temp->next = frame->b;
     frame->b = temp;
     add_command(frame, "ss");
-    print_stack(frame);
 }

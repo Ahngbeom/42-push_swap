@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/18 10:27:44 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/20 21:00:38 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -62,7 +61,6 @@ struct	s_frame
 	t_command	*cmd_list;
 };
 
-void    print_stack(t_frame *frame);
 void    print_command(t_command *cmd_list);
 
 int     isInteger(char *str);
@@ -83,7 +81,10 @@ t_stack	*mid_element(t_stack *stack);
 int     min(t_stack *stack, int range);
 int     max(t_stack *stack, int range);
 int     median(t_stack *stack, int range);
-int     select_pivot(t_stack *stack, int limit);
+
+int     select_pivot(t_stack *stack, int limit, double ratio);
+int     select_big_pivot(t_stack *stack, int limit);
+int     select_small_pivot(t_stack *stack, int limit);
 
 int     check_asc(t_stack *stack);
 int     check_desc(t_stack *stack);
@@ -92,7 +93,7 @@ void    descending(t_frame *frame);
 
 void	case_3(t_frame *frame, t_stack *stack);
 void	case_5(t_frame *frame);
-void	a_to_b(t_frame *frame, int count);
+void	a_to_b(t_frame *frame, int count, void (*call_out_func));
 void	b_to_a(t_frame *frame, int count);
 
 
