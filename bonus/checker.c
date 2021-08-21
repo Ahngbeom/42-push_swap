@@ -6,104 +6,60 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/20 22:52:41 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/21 15:36:13 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "get_next_line.h"
 
 int	main(int argc, char *argv[])
 {
-	int	i;
-	int	arg_len;
-	char	**stack_a;
-	char	**stack_b;
-	int	read_size;
-	char	cmd[4];
-	int	cmd_cnt;
+	t_frame	*frame;
+	char	*cmd;
 
-	printf("\n#######################\n");
-	printf("####### CHECKER #######");
-	printf("\n#######################\n\n");
+	invalid_arg(argc, argv);
+	frame = frame_init();
+	stack_init(frame, argv);
 
-	if ((arg_len = invalid_arg(argc, argv)) < 0)
-		exit(0);
-	if (!(stack_a = (char **)ft_calloc(arg_len + 1, sizeof(char *))))
-		return (1);
-
-	i = 0;
-	while (i < arg_len)
-	{
-		stack_a[i] = ft_strdup(argv[i + 1]);
-		i++;
-	}
-	stack_a[i] = NULL;
-	stack_b = NULL;
-
-
-	cmd_cnt = 0;
-	if (check_ascending(stack_a, stack_b))
-	{
-		print_stack(stack_a, stack_b);
-		printf("OK:::Ascending Sort SUCCESS !!! - %d\n", cmd_cnt);
-	}
+	if (check_asc(frame->a) == TRUE)
+		ft_putendl_fd("OK", 1);
 	else
 	{
-		while ((read_size = read(0, cmd, 4)) > 0)
+		while (get_next_line(0, &cmd) > 0)
 		{
-			cmd[read_size - 1] = '\0';
+			if (ft_strncmp(SWAP_A, cmd, ft_strlen(cmd)) == 0)
+				swap_a(frame);
+			if (ft_strncmp(SWAP_B, cmd, ft_strlen(cmd)) == 0)
+				swap_b(frame);
+			if (ft_strncmp(SWAP_S, cmd, ft_strlen(cmd)) == 0)
+				swap_s(frame);
 
-			//branch_command(cmd, read_size, stack_a, stack_b);
-			//*
-			if (ft_strncmp(SWAP_A, cmd, read_size) == 0)
-				swap_stack(stack_a);
-			if (ft_strncmp(SWAP_B, cmd, read_size) == 0)
-				swap_stack(stack_b);
-			if (ft_strncmp(SWAP_S, cmd, read_size) == 0)
-			{
-				swap_stack(stack_a);
-				swap_stack(stack_b);
-			}
+			if (ft_strncmp(PUSH_A, cmd, ft_strlen(cmd)) == 0)
+				push_a(frame);
+			if (ft_strncmp(PUSH_B, cmd, ft_strlen(cmd)) == 0)
+				push_b(frame);
 
-			if (ft_strncmp(PUSH_A, cmd, read_size) == 0)
-				stack_a = push_stack(stack_a, stack_b);
-			if (ft_strncmp(PUSH_B, cmd, read_size) == 0)
-				stack_b = push_stack(stack_b, stack_a);
+			if (ft_strncmp(ROTATE_A, cmd, ft_strlen(cmd)) == 0)
+				rotate_a(frame);
+			if (ft_strncmp(ROTATE_B, cmd, ft_strlen(cmd)) == 0)
+				rotate_b(frame);
+			if (ft_strncmp(ROTATE_R, cmd, ft_strlen(cmd)) == 0)
+				rotate_r(frame);
 
-			if (ft_strncmp(ROTATE_A, cmd, read_size) == 0)
-				rotate_stack(stack_a);
-			if (ft_strncmp(ROTATE_B, cmd, read_size) == 0)
-				rotate_stack(stack_b);
-			if (ft_strncmp(ROTATE_R, cmd, read_size) == 0)
-			{
-				rotate_stack(stack_a);
-				rotate_stack(stack_b);
-			}
-
-			if (ft_strncmp(REVERSE_ROTATE_A, cmd, read_size) == 0)
-				reverse_rotate_stack(stack_a);
-			if (ft_strncmp(REVERSE_ROTATE_B, cmd, read_size) == 0)
-				reverse_rotate_stack(stack_b);
-			if (ft_strncmp(REVERSE_ROTATE_R, cmd, read_size) == 0)
-			{
-				reverse_rotate_stack(stack_a);
-				reverse_rotate_stack(stack_b);
-			}
-			//*/
-			cmd_cnt++;
-			print_stack(stack_a, stack_b);
-
-			if (check_ascending(stack_a, stack_b))
-			{
-				printf("OK:::Ascending Sort SUCCESS !!! - %d\n", cmd_cnt);
-				break ;
-			}
+			if (ft_strncmp(REVERSE_ROTATE_A, cmd, ft_strlen(cmd)) == 0)
+				reverse_rotate_a(frame);
+			if (ft_strncmp(REVERSE_ROTATE_B, cmd, ft_strlen(cmd)) == 0)
+				reverse_rotate_b(frame);
+			if (ft_strncmp(REVERSE_ROTATE_R, cmd, ft_strlen(cmd)) == 0)
+				reverse_rotate_r(frame);
 		}
 	}
-	if (stack_a != NULL)
-		free(stack_a);
-	if (stack_b != NULL)
-		free(stack_b);
-
+	if (check_asc(frame->a) == TRUE && frame->b == NULL)
+		ft_putendl_fd("OK", 1);
+	else
+		ft_putendl_fd("KO", 1);
+	free(cmd);
+	frame_free(frame);
 	return (0);
 }

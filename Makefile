@@ -6,7 +6,7 @@
 #    By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/20 22:53:38 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/21 13:56:12 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,36 +22,43 @@ LIB_DIR			= ./libft
 LINK_LIBFT		= -Llibft -lft
 
 SRCS_DIR		= ./srcs/
-SRCS_NAME		= push_swap.c a_to_b.c b_to_a.c \
+SRCS_NAME		= a_to_b.c b_to_a.c \
 					frame.c stack.c command.c check.c \
 					length.c element.c case.c pivot.c \
 					swap.c push.c rotate.c reverse_rotate.c
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_NAME))
 OBJS			= $(SRCS:.c=.o)
 
-BONUS_SRCS		= ./bonus/checker.c
+PUSHSWAP_SRCS		= ./srcs/push_swap.c
+PUSHSWAP_OBJS		= $(PUSHSWAP_SRCS:.c=.o)
+
+CHECKER_SRCS		= ./bonus/checker.c \
+						./bonus/get_next_line.c ./bonus/get_next_line_utils.c 
+CHECKER_OBJS		= $(CHECKER_SRCS:.c=.o)
 
 all				: $(PUSH_SWAP)
 
 bonus			: $(CHECKER)
 
-$(PUSH_SWAP) 	: $(OBJS)
+$(PUSH_SWAP) 	: $(OBJS) $(PUSHSWAP_OBJS)
 				$(MAKE) all -C $(LIB_DIR)
 				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(LINK_LIBFT) -o $@
 
-$(CHECKER)		: $(BONUS_SRCS) 
-				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(LINK_LIBFT) -o $@
+$(CHECKER)		: $(OBJS) $(CHECKER_OBJS)
+				$(MAKE) all
+				$(MAKE) all -C $(LIB_DIR)
+				$(CC) $(CFLAGS) $(INCFLAGS) -I./bonus $^ $(LINK_LIBFT) -o $@
 
 .c.o			:
 				$(CC) $(CFLAGS) $(INCFLAGS) -c $< -o $@
 
 clean			:
 				$(MAKE) -C $(LIB_DIR) clean
-				rm -fv $(OBJS) 
+				rm -fv $(OBJS) $(PUSHSWAP_OBJS) $(CHECKER_OBJS)
 
 fclean			: clean
 				$(MAKE) -C $(LIB_DIR) fclean
-				rm -fv $(PUSH_SWAP)
+				rm -fv $(PUSH_SWAP) $(addprefix ./bonus/, $(CHECKER))
 
 re				: fclean all
 

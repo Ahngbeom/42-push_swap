@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/20 21:34:24 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/21 15:25:46 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void    print_command(t_command *cmd_list)
     ptr = cmd_list;
     while (ptr != NULL)
     {
-        ft_putstr_fd(ptr->cmd, 1);
-		ft_putstr_fd("\n", 1);
+        // ft_putstr_fd(ptr->cmd, 1);
+		ft_putendl_fd(ptr->cmd, 1);
         ptr = ptr->next;
     }
+	ft_putstr_fd("\0", 1);
 }
 
 int	main(int argc, char *argv[])

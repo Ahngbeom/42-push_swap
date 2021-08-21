@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 14:18:25 by bahn              #+#    #+#             */
-/*   Updated: 2021/05/20 17:01:25 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/21 14:24:21 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	ft_strlcpy(ptr, (char *)s1, s1_len + 1);
 	ft_strlcat(ptr, (char *)s2, s1_len + s2_len + 1);
-	free(s1);
+	// free(s1);
 	return (ptr);
 }
