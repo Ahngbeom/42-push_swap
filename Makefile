@@ -6,7 +6,7 @@
 #    By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/21 13:56:12 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/21 15:43:38 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ clean			:
 
 fclean			: clean
 				$(MAKE) -C $(LIB_DIR) fclean
-				rm -fv $(PUSH_SWAP) $(addprefix ./bonus/, $(CHECKER))
+				rm -fv $(PUSH_SWAP) $(CHECKER)
 
 re				: fclean all
 
