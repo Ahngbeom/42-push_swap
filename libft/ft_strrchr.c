@@ -6,13 +6,13 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:38:18 by bahn              #+#    #+#             */
-/*   Updated: 2020/12/23 17:48:15 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 15:14:03 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strrchr(char *str, int c)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (*str != '\0')

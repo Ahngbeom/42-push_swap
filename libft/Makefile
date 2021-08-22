@@ -6,7 +6,7 @@
 #    By: bahn <bahn@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/21 15:47:18 by bahn              #+#    #+#              #
-#    Updated: 2021/05/23 13:22:46 by bahn             ###   ########.fr        #
+#    Updated: 2021/01/07 15:59:37 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ FILES		=	ft_strlen \
 				ft_strrchr \
 				ft_strnstr \
 				ft_strncmp \
-				ft_strcmp \
 				ft_atoi \
 				ft_isalpha \
 				ft_isdigit \

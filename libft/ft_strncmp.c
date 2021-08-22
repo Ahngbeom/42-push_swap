@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bahn@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 15:43:04 by bahn              #+#    #+#             */
-/*   Updated: 2021/05/18 17:15:51 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:58:15 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+#include "stdio.h"
+
 int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	unsigned char	*ptr1;

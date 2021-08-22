@@ -6,12 +6,11 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:41:58 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/21 15:34:20 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:41:31 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "checker.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -92,6 +91,7 @@ int		get_next_line(int fd, char **line)
 {
 	static	char	*stc_buff[OPEN_MAX];
 	char			buff[BUFFER_SIZE + 1];
+	char 			*temp;
 	ssize_t			read_size;
 	ssize_t			lf_idx;
 
@@ -103,7 +103,11 @@ int		get_next_line(int fd, char **line)
 		if (!stc_buff[fd])
 			stc_buff[fd] = ft_strdup(buff);
 		else
+		{
+			temp = stc_buff[fd];
 			stc_buff[fd] = ft_strjoin(stc_buff[fd], buff);
+			free(temp);
+		}
 		if ((lf_idx = find_line_feed(stc_buff[fd])) >= 0)
 			return (extract_line(&stc_buff[fd], line, lf_idx));
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:55:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 03:35:47 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 17:02:20 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int     invalid_arg(int argc, char *argv[])
     int     i;
 	int	j;
 
+
     if (argc < 2)
     {
         ft_putendl_fd("Error", 1);
@@ -71,16 +72,20 @@ int     invalid_arg(int argc, char *argv[])
     {
         if (isInteger(argv[i]))
         {
+
             ft_putendl_fd("Error", 1);
             exit(1);
         }
         j = i + 1;
         while (argv[j] != NULL)
         {
-            if (ft_strcmp(argv[i], argv[j]))
+            if (ft_strncmp(argv[i], argv[j], ft_strlen(argv[i])) == 0)
             {
-                ft_putendl_fd("Error", 1);
-                exit(1);
+                if (ft_strlen(argv[i]) == ft_strlen(argv[j]))
+                {
+                    ft_putendl_fd("Error", 1);
+                    exit(1);
+                }
             }
             j++;
         }

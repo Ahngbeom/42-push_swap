@@ -6,22 +6,20 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 20:51:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/05/23 13:25:24 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:05:43 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}				t_list;
 
 int					ft_strlen(char *str);
 size_t				ft_strlcpy(char *dest, char *src, size_t size);
@@ -30,7 +28,6 @@ char				*ft_strchr(char *str, int c);
 char				*ft_strrchr(char *str, int c);
 char				*ft_strnstr(char *dest, char *src, size_t size);
 int					ft_strncmp(char *s1, char *s2, size_t n);
-int					ft_strcmp(char *s1, char *s2);
 int					ft_atoi(char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -49,7 +46,7 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
 char				*ft_strdup(char *src);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strjoin(char *s1, char *s2);
+char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
@@ -66,7 +63,7 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),	\
 		void (*del)(void *));
 
 #endif

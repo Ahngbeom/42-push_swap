@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 13:50:13 by bahn              #+#    #+#             */
-/*   Updated: 2021/01/02 12:27:45 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:03:01 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	if ((size_t)ft_strlen((char *)s) < start)
-	{
-		if (!(ptr = malloc(1)))
-			return (NULL);
-		ptr[i] = '\0';
-	}
+		return ("\0");
 	else
 	{
-		if (!(ptr = malloc(len + 1)))
+		ptr = malloc(len + 1);
+		if (ptr == NULL)
 			return (NULL);
 		while (i < len && s[start] != '\0')
 			ptr[i++] = s[start++];

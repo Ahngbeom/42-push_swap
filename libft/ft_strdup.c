@@ -6,11 +6,11 @@
 /*   By: bahn <bahn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 15:47:03 by bahn              #+#    #+#             */
-/*   Updated: 2021/01/01 19:13:45 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:24:59 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(char *src)
 {
@@ -19,9 +19,7 @@ char	*ft_strdup(char *src)
 	char	*cpy;
 
 	i = 0;
-	src_len = 0;
-	while (src[src_len] != '\0')
-		src_len++;
+	src_len = ft_strlen(src);
 	cpy = malloc(sizeof(char) * src_len + 1);
 	if (!cpy)
 		return (NULL);

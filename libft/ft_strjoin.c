@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 14:18:25 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/21 14:24:21 by bahn             ###   ########.fr       */
+/*   Updated: 2021/01/01 20:02:20 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -27,6 +27,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	ft_strlcpy(ptr, (char *)s1, s1_len + 1);
 	ft_strlcat(ptr, (char *)s2, s1_len + s2_len + 1);
-	// free(s1);
 	return (ptr);
 }

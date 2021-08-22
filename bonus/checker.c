@@ -6,12 +6,12 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 03:01:06 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:40:09 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "get_next_line.h"
+#include "checker.h"
 
 static	void	select_operation(t_frame *frame, char *cmd)
 {

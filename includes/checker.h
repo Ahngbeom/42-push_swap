@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:00:24 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/21 14:21:40 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:41:11 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
+# include "libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -25,11 +26,5 @@
 # endif
 
 int			get_next_line(int fd, char **line);
-
-int			ft_strlen(char *str);
-char		*ft_strdup(char *src);
-size_t		ft_strlcpy(char *dest, char *src, size_t size);
-size_t		ft_strlcat(char *dest, char *src, size_t size);
-char		*ft_strjoin(char *s1, char *s2);
 
 #endif

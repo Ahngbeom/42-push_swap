@@ -6,7 +6,7 @@
 /*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/20 21:00:38 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:39:01 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include "libft.h"
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 10
+# endif
 
 # define TRUE			1
 # define FALSE			0
@@ -73,7 +81,6 @@ void    stack_init(t_frame *frame, char **argv);
 void	fix_element(t_frame *frame);
 
 void    add_command(t_frame *frame, char *cmd);
-int     count_command(t_frame *frame, char *find);
 
 int     length(t_stack *stack);
 t_stack	*last_element(t_stack *stack);

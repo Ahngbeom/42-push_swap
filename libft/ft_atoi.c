@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bahn@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 15:46:58 by bahn              #+#    #+#             */
-/*   Updated: 2021/01/04 14:42:25 by bahn             ###   ########.fr       */
+/*   Created: 2021/08/22 14:40:23 by bahn              #+#    #+#             */
+/*   Updated: 2021/08/22 14:40:31 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static	char	*ft_isspace(char *str)
 {
-	while (*str != '\0' && (*str == ' ' || *str == '\f' || *str == '\n' ||
-	*str == '\r' || *str == '\t' || *str == '\v'))
+	while (*str != '\0' && (*str == ' ' || *str == '\f' || *str == '\n' || \
+			*str == '\r' || *str == '\t' || *str == '\v'))
 	{
 		str++;
 	}
 	return (str);
 }
 
-int				ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
-	long long sign;
-	long long nbr;
+	long long	sign;
+	long long	nbr;
 
 	sign = 1;
 	nbr = 0;

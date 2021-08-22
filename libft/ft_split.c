@@ -6,22 +6,11 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 21:22:04 by bahn              #+#    #+#             */
-/*   Updated: 2021/01/05 22:25:26 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 16:06:24 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static	char	**ft_free_malloc(char **pptr)
-{
-	size_t	i;
-
-	i = 0;
-	while (pptr[i])
-		free(pptr[i++]);
-	free(pptr);
-	return (pptr);
-}
 
 static	size_t	ft_countstrs(char *s, char c)
 {
@@ -72,31 +61,44 @@ static	size_t	ft_strclen(char *s, char c)
 	return (length);
 }
 
-char			**ft_split(char const *s, char c)
+static	char	**ft_splitter(char **pptr, char *str_ptr, char c, \
+		size_t str_cnt)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < str_cnt)
+	{
+		pptr[i] = (char *)malloc(ft_strclen(ft_findstr(str_ptr, c), c) + 1);
+		if (pptr[i] == NULL)
+		{
+			while (pptr[i] != NULL)
+				free(pptr[i++]);
+			free(pptr);
+			return (pptr);
+		}
+		ft_strlcpy(pptr[i], ft_findstr(str_ptr, c), \
+				ft_strclen(ft_findstr(str_ptr, c), c) + 1);
+		str_ptr = ft_findstr(ft_findstr(str_ptr, c) + \
+				ft_strclen(ft_findstr(str_ptr, c), c), c);
+		i++;
+	}
+	pptr[i] = NULL;
+	return (pptr);
+}
+
+char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	char	*sptr;
 	size_t	cnt_strs;
-	size_t	i;
 
 	if (!s)
 		return (NULL);
 	sptr = (char *)s;
 	cnt_strs = ft_countstrs(sptr, c);
-	if (!(result = (char **)malloc(sizeof(char *) * (cnt_strs + 1))))
+	result = (char **)malloc(sizeof(char *) * (cnt_strs + 1));
+	if (result == NULL)
 		return (NULL);
-	i = 0;
-	while (i < cnt_strs)
-	{
-		if (!(result[i] =
-(char *)malloc(ft_strclen(ft_findstr(sptr, c), c) + 1)))
-			return (ft_free_malloc(result));
-		ft_strlcpy(result[i], ft_findstr(sptr, c),
-ft_strclen(ft_findstr(sptr, c), c) + 1);
-		sptr = ft_findstr(ft_findstr(sptr, c) +
-ft_strclen(ft_findstr(sptr, c), c), c);
-		i++;
-	}
-	result[i] = NULL;
-	return (result);
+	return (ft_splitter(result, sptr, c, cnt_strs));
 }

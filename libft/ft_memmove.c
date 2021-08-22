@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 20:24:18 by bahn              #+#    #+#             */
-/*   Updated: 2021/01/06 16:43:31 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 14:49:21 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	unsigned char	*dptr;
 	unsigned char	*sptr;
 
-	dptr = (unsigned char*)dest;
-	sptr = (unsigned char*)src;
+	dptr = (unsigned char *)dest;
+	sptr = (unsigned char *)src;
 	if (!dest && !src)
 		return (NULL);
 	if (dptr <= sptr)
