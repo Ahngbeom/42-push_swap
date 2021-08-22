@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/20 21:03:33 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 21:20:18 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int     reverse_rotate_check(t_frame *frame, t_stack *stack)
-{
-    if (length(stack) < 2)
-        return (FALSE);
-    if (frame->a == stack && check_asc(stack) == FALSE)
-    {
-        if (frame->big_pivot > last_element(stack)->element)
-            return (TRUE);
-        else
-            return (FALSE);
-    }
-    else if (frame->b == stack && check_desc(stack) == FALSE)
-    {
-        if (frame->small_pivot < last_element(stack)->element)
-            return (TRUE);
-        else if (max(stack, length(frame->b)) == last_element(stack)->element)
-            return (TRUE);
-        else
-            return (FALSE);
-    }
-    else
-        return (FALSE);
-}
 
 int    reverse_rotate_a(t_frame *frame)
 {

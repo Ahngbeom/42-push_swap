@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 18:47:30 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/23 00:06:50 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 # include "libft.h"
 # include <stdlib.h>
 # include <unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
-
-# ifndef OPEN_MAX
-#  define OPEN_MAX 10
-# endif
 
 # define TRUE			1
 # define FALSE			0
@@ -41,7 +33,6 @@
 # define REVERSE_ROTATE_R	"rrr"
 
 typedef	struct	s_stack	t_stack;
-typedef struct	s_command t_command;
 typedef struct	s_frame t_frame;
 
 struct	s_stack
@@ -49,13 +40,6 @@ struct	s_stack
 	int		element;
 	t_stack *prev;
 	t_stack	*next;
-};
-
-struct	s_command
-{
-	char		*cmd;
-	t_command	*prev;
-	t_command	*next;
 };
 
 struct	s_frame
@@ -66,10 +50,8 @@ struct	s_frame
 	int		big_pivot;
 	int		small_pivot;
 
-	t_command	*cmd_list;
+	char 	*cmd_list;
 };
-
-void    print_command(t_command *cmd_list);
 
 void    ft_puterr(void);
 void	invalid_arg(int argc, char *argv[]);
@@ -102,21 +84,22 @@ void	case_5(t_frame *frame);
 void	a_to_b(t_frame *frame, int count, void (*call_out_func));
 void	b_to_a(t_frame *frame, int count);
 
+void    scope_1(t_frame *frame, t_stack *stack);
+void    scope_2(t_frame *frame, t_stack *stack);
+void    scope_3(t_frame *frame, t_stack *stack, int range);
+
 
 int    push_a(t_frame *frame);
 int    push_b(t_frame *frame);
 
-int		swap_check(t_frame *frame, t_stack *stack);
 void	swap_a(t_frame *frame);
 void	swap_b(t_frame *frame);
 void	swap_s(t_frame *frame);
 
-int    rotate_check(t_frame *frame, t_stack *stack);
 int    rotate_a(t_frame *frame);
 int    rotate_b(t_frame *frame);
 void    rotate_r(t_frame *frame);
 
-int    reverse_rotate_check(t_frame *frame, t_stack *stack);
 int    reverse_rotate_a(t_frame *frame);
 int    reverse_rotate_b(t_frame *frame);
 void    reverse_rotate_r(t_frame *frame);

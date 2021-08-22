@@ -3,40 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:12:46 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 16:18:04 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 21:17:21 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static  t_command   *create_command(char *cmd)
-{
-    t_command   *new;
-
-    if (!(new = (t_command *)malloc(sizeof(t_command))))
-        return (NULL);
-    new->cmd = ft_strdup(cmd);
-    // new->cmd = ft_strjoin(cmd, "\n");
-    new->prev = NULL;
-    new->next = NULL; 
-    return (new);
-}
-
 void    add_command(t_frame *frame, char *cmd)
 {
-    t_command   *ptr;
-    
+    char        *tmp;
+    char        *cmd_lf;
+
     if (frame->cmd_list != NULL)
     {
-        ptr = frame->cmd_list;
-        while (ptr->next != NULL)
-            ptr = ptr->next;
-        ptr->next = create_command(cmd);
-        ptr->next->prev = ptr;
+        tmp = frame->cmd_list;
+        cmd_lf = ft_strjoin("\n", cmd);
+        frame->cmd_list = ft_strjoin(frame->cmd_list, cmd_lf);
+        free(tmp);
+        free(cmd_lf);
     }
     else
-        frame->cmd_list = create_command(cmd);
+        frame->cmd_list = ft_strdup(cmd);
 }

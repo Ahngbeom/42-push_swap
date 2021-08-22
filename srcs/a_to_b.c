@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:49:27 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 19:28:29 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/23 00:20:26 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,50 +17,9 @@ static  int    sorting(t_frame *frame, int range)
     if (range <= 3)
 	{
 		if (range == 2)
-		{
-			if (frame->a->element > frame->a->next->element)
-				swap_a(frame);
-		}
+			scope_2(frame, frame->a);
         else if (range == 3)
-        {
-            if (length(frame->a) == 3)
-            {
-                while (check_asc(frame->a) == FALSE)
-                {
-                    if (frame->a->element == max(frame->a, range))
-                        rotate_a(frame);
-                    else if (frame->a->next->element == max(frame->a, range))
-                        reverse_rotate_a(frame);
-                    else
-                        swap_a(frame);
-                }
-            }
-            else
-            {
-               	if (frame->a->element == max(frame->a, range))
-				{
-					swap_a(frame);
-					rotate_a(frame);
-					swap_a(frame);
-					reverse_rotate_a(frame);
-					if (frame->a->element > frame->a->next->element)
-						swap_a(frame);
-				}
-				else if (frame->a->next->element == max(frame->a, range))
-				{
-					rotate_a(frame);
-					swap_a(frame);
-					reverse_rotate_a(frame);
-					if (frame->a->element > frame->a->next->element)
-						swap_a(frame);
-				}
-				else if (frame->a->next->next->element == max(frame->a, range))
-				{
-					if (frame->a->element > frame->a->next->element)
-						swap_a(frame);
-				}
-            }
-        }
+			scope_3(frame, frame->a, range);
         return (TRUE);
 	}
     else 

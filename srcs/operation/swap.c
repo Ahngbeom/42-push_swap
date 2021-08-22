@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:47:29 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/20 21:03:11 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 21:20:23 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int     swap_check(t_frame *frame, t_stack *stack)
-{
-    if (length(stack) < 2)
-        return (FALSE);
-    if (frame->a == stack)
-    {   
-        if (stack->element > stack->next->element)
-            return (TRUE);
-        else
-            return (FALSE);
-    }
-    else if (frame->b == stack)
-    {   
-        if (stack->element < stack->next->element)
-            return (TRUE);
-        else
-            return (FALSE);
-    }
-    else
-    {
-        ft_putstr_fd("ERROR\n", 1);
-        exit(1);
-    }
-}
 
 void     swap_a(t_frame *frame)
 {
