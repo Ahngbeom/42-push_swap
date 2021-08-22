@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 16:39:01 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 18:47:30 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,13 @@ struct	s_frame
 
 void    print_command(t_command *cmd_list);
 
-int     isInteger(char *str);
-int     invalid_arg(int argc, char *argv[]);
+void    ft_puterr(void);
+void	invalid_arg(int argc, char *argv[]);
 
 t_frame    *frame_init();
 void        frame_free(t_frame *frame);
 
 void    stack_init(t_frame *frame, char **argv);
-void	fix_element(t_frame *frame);
 
 void    add_command(t_frame *frame, char *cmd);
 

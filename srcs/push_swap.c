@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 02:25:57 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/22 19:28:12 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void    print_command(t_command *cmd_list)
     ptr = cmd_list;
     while (ptr != NULL)
     {
-        // ft_putstr_fd(ptr->cmd, 1);
 		ft_putendl_fd(ptr->cmd, 1);
         ptr = ptr->next;
     }

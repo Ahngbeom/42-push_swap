@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+         #
+#    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/22 16:39:36 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/22 17:36:24 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LINK_LIBFT		= -Llibft -lft
 
 SRCS_DIR		= ./srcs/
 SRCS_NAME		= a_to_b.c b_to_a.c \
-					frame.c stack.c command.c check.c \
+					frame.c stack.c command.c sort_check.c exception.c\
 					length.c element.c pivot.c \
 					swap.c push.c rotate.c reverse_rotate.c
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_NAME))
