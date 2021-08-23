@@ -3,39 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   pivot.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 16:29:09 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/20 16:10:35 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/23 16:02:39 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     select_pivot(t_stack *stack, int limit, double ratio)
+static  void    array_converter(t_stack *stack, int *arr, int const *limit)
 {
     t_stack *ptr;
-
-    int     arr[limit];
     int     cnt;
-
-    int     i;
-    int     j;
-    int     temp;
-
+    
     ptr = stack;
     cnt = 0;
-    while (cnt < limit)
+    while (cnt < *limit)
     {
         arr[cnt++] = ptr->element;
         ptr = ptr->next;
     }
-    
+}
+
+static  void    array_ascending(int *arr, int const *limit)
+{
+    int i;
+    int j;
+    int temp;
+
     i = 0;
-    while (i < limit - 1)
+    while (i < *limit - 1)
     {
         j = i + 1;
-        while (j < limit)
+        while (j < *limit)
         {
             if (arr[i] > arr[j])
             {
@@ -47,101 +48,28 @@ int     select_pivot(t_stack *stack, int limit, double ratio)
         }
         i++;
     }
-    return (arr[(int)(limit * ratio)]);
 }
 
 int     select_big_pivot(t_stack *stack, int limit)
 {
-    t_stack *ptr;
-
     int     arr[limit];
-    int     cnt;
 
-    int     i;
-    int     j;
-    int     temp;
-
-    // int     min;
-    // int     max;
-
-    ptr = stack;
-    cnt = 0;
-    while (cnt < limit)
-    {
-        arr[cnt++] = ptr->element;
-        ptr = ptr->next;
-    }
-    
-    i = 0;
-    while (i < limit - 1)
-    {
-        j = i + 1;
-        while (j < limit)
-        {
-            if (arr[i] > arr[j])
-            {
-                temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-            j++;
-        }
-        i++;
-    }
-    
-    // cnt = 0;
-    // while (cnt < limit)
-    // {
-    //     printf("%d\n", arr[cnt++]);
-    // }
-
+    array_converter(stack, arr, &limit);
+    array_ascending(arr, &limit);
     return (arr[limit / 2]);
 }
 
 int     select_small_pivot(t_stack *stack, int limit)
 {
-    t_stack *ptr;
+     int     arr[limit];
 
-    int     arr[limit];
-    int     cnt;
-
-    int     i;
-    int     j;
-    int     temp;
-
-    // int     min;
-    // int     max;
-
-    ptr = stack;
-    cnt = 0;
-    while (cnt < limit)
-    {
-        arr[cnt++] = ptr->element;
-        ptr = ptr->next;
-    }
-    
-    i = 0;
-    while (i < limit - 1)
-    {
-        j = i + 1;
-        while (j < limit)
-        {
-            if (arr[i] > arr[j])
-            {
-                temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-            j++;
-        }
-        i++;
-    }
-    
-    // cnt = 0;
-    // while (cnt < limit)
-    // {
-    //     printf("%d\n", arr[cnt++]);
-    // }
-
+    array_converter(stack, arr, &limit);
+    array_ascending(arr, &limit);
     return (arr[limit / 4]);
+}
+
+void     select_pivot(t_frame *frame, t_stack *stack, int limit)
+{
+    frame->big_pivot = select_big_pivot(stack, limit);
+    frame->small_pivot = select_small_pivot(stack, limit);
 }

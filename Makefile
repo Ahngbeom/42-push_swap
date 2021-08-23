@@ -6,7 +6,7 @@
 #    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/22 23:39:28 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/23 12:51:03 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS_FNAME		= a_to_b.c b_to_a.c \
 					frame.c stack.c command.c \
 					sort_check.c exception.c \
 					length.c element.c pivot.c \
-					scope_1.c scope_2.c scope_3.c
+					scope_1.c scope_2.c scope_3.c \
+					revert.c
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_FNAME))
 OBJS			= $(SRCS:.c=.o)
 

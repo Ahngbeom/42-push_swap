@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:54:02 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/23 03:02:17 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/23 16:02:56 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,36 @@ static  int     sorting(t_frame *frame, int range)
         return (FALSE);
 }
 
-void	b_to_a(t_frame *frame, int range)
+static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pa)
 {
-    int	i	= 0;
-	int ra_cnt = 0;
-	int	rb_cnt = 0;
-	int	pa_cnt = 0;
-	
-	if (sorting(frame, range) == TRUE)
-        return ;
-	frame->big_pivot = select_big_pivot(frame->b, range);
-	frame->small_pivot = select_small_pivot(frame->b, range);
 	while (range--)
 	{
 		if (frame->b->element <= frame->small_pivot)
-			rb_cnt += rotate_b(frame);
+			*rb += rotate_b(frame);
 		else
 		{
-			pa_cnt += push_a(frame);
+			*pa += push_a(frame);
 			if (length(frame->a) >= 2 && frame->a->element <= frame->big_pivot)
-				ra_cnt += rotate_a(frame);
+				*ra += rotate_a(frame);
 		}
 	}
+}
+
+void	b_to_a(t_frame *frame, int range, void (*call_out_func))
+{
+	int ra_cnt;
+	int	rb_cnt;
+	int	pa_cnt;
+	
+	if (sorting(frame, range) == TRUE)
+        return ;
+	select_pivot(frame, frame->b, range);
+	ra_cnt = 0;
+	rb_cnt = 0;
+	pa_cnt = 0;
+	pivoting(frame, range, &ra_cnt, &rb_cnt, &pa_cnt);
 	a_to_b(frame, pa_cnt - ra_cnt, b_to_a);
-	while (i < ra_cnt || i < rb_cnt)
-	{
-		if (i >= rb_cnt || length(frame->b) < 2)
-			reverse_rotate_a(frame);
-		else if (i >= ra_cnt || length(frame->a) < 2)
-			reverse_rotate_b(frame);
-		else
-			reverse_rotate_r(frame);
-		i++;
-	}
+	revert(frame, ra_cnt, rb_cnt, call_out_func);
 	a_to_b(frame, ra_cnt, b_to_a);
-	b_to_a(frame, rb_cnt);
+	b_to_a(frame, rb_cnt, call_out_func);
 }

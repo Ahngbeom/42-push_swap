@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/23 00:06:50 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/23 19:35:06 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ struct	s_frame
 	int		big_pivot;
 	int		small_pivot;
 
-	char 	*cmd_list;
+	char 	*cmd;
 };
 
+// Exception
 void    ft_puterr(void);
 void	invalid_arg(int argc, char *argv[]);
 
@@ -70,25 +71,25 @@ int     min(t_stack *stack, int range);
 int     max(t_stack *stack, int range);
 int     median(t_stack *stack, int range);
 
-int     select_pivot(t_stack *stack, int limit, double ratio);
+// Pivot
+void	select_pivot(t_frame *frame, t_stack *stack, int limit);
 int     select_big_pivot(t_stack *stack, int limit);
 int     select_small_pivot(t_stack *stack, int limit);
 
+// Sorted Checking
 int     check_asc(t_stack *stack);
 int     check_desc(t_stack *stack);
-void    ascending(t_frame *frame);
-void    descending(t_frame *frame);
 
-void	case_3(t_frame *frame, t_stack *stack);
-void	case_5(t_frame *frame);
 void	a_to_b(t_frame *frame, int count, void (*call_out_func));
-void	b_to_a(t_frame *frame, int count);
+void	b_to_a(t_frame *frame, int count, void (*call_out_func));
 
 void    scope_1(t_frame *frame, t_stack *stack);
 void    scope_2(t_frame *frame, t_stack *stack);
 void    scope_3(t_frame *frame, t_stack *stack, int range);
 
+void    revert(t_frame *frame, int ra, int rb, void (*call_out_func));
 
+// Operation
 int    push_a(t_frame *frame);
 int    push_b(t_frame *frame);
 
