@@ -6,11 +6,12 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 18:26:34 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/24 16:17:11 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/24 16:19:07 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void    print_stack(t_frame *frame);
 
 int    rotate_a(t_frame *frame)
 {
@@ -25,6 +26,7 @@ int    rotate_a(t_frame *frame)
     last_element(frame->a)->next = temp;
     temp->next = NULL;
     add_command(frame, "ra");
+    print_stack(frame);
     return (1);
 }
 
@@ -41,6 +43,7 @@ int    rotate_b(t_frame *frame)
     last_element(frame->b)->next = temp;
     temp->next = NULL;
     add_command(frame, "rb");
+    print_stack(frame);
     return (1);
 }
 
@@ -72,4 +75,5 @@ void    rotate_r(t_frame *frame)
     temp->next = NULL;
 
     add_command(frame, "rr");
+    print_stack(frame);
 }

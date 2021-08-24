@@ -6,11 +6,12 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/24 16:17:35 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/24 16:18:58 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void    print_stack(t_frame *frame);
 
 int    reverse_rotate_a(t_frame *frame)
 {
@@ -25,6 +26,7 @@ int    reverse_rotate_a(t_frame *frame)
     frame->a->prev = temp;
     frame->a = temp;
     add_command(frame, "rra");
+    print_stack(frame);
     return (1);
 }
 
@@ -41,6 +43,7 @@ int    reverse_rotate_b(t_frame *frame)
     frame->b->prev = temp;
     frame->b = temp;
     add_command(frame, "rrb");
+    print_stack(frame);
     return (1);
 }
 
@@ -71,4 +74,5 @@ void    reverse_rotate_r(t_frame *frame)
     frame->b->prev = temp;
     frame->b = temp;
     add_command(frame, "rrr");
+    print_stack(frame);
 }

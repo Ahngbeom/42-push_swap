@@ -6,7 +6,7 @@
 #    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/23 12:51:03 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/25 04:01:04 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,10 @@ SRCS_DIR		= ./srcs/
 SRCS_FNAME		= a_to_b.c b_to_a.c \
 					frame.c stack.c command.c \
 					sort_check.c exception.c \
-					length.c element.c pivot.c \
 					scope_1.c scope_2.c scope_3.c \
-					revert.c
+					pivot.c revert.c \
+					length.c element.c \
+
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_FNAME))
 OBJS			= $(SRCS:.c=.o)
 
@@ -42,9 +43,19 @@ PUSHSWAP_OBJS		= $(PUSHSWAP_SRCS:.c=.o)
 CHECKER_SRCS		= ./bonus/checker.c ./bonus/get_next_line.c
 CHECKER_OBJS		= $(CHECKER_SRCS:.c=.o)
 
+TEST_SRCS			= ./dir_for_test/print.c \
+					 ./dir_for_test/operation/push.c \
+					 ./dir_for_test/operation/swap.c \
+					 ./dir_for_test/operation/rotate.c \
+					 ./dir_for_test/operation/reverse_rotate.c \
+
 all				: $(PUSH_SWAP)
 
 bonus			: $(CHECKER)
+
+test			: $(OBJS) $(PUSHSWAP_OBJS)
+				$(MAKE) all -C $(LIB_DIR)
+				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(TEST_SRCS) $(LINK_LIBFT) -o push_swap_with_stack
 
 $(PUSH_SWAP) 	: $(OBJS) $(OPERATION_OBJS) $(PUSHSWAP_OBJS)
 				$(MAKE) all -C $(LIB_DIR)
@@ -64,7 +75,7 @@ clean			:
 
 fclean			: clean
 				$(MAKE) -C $(LIB_DIR) fclean
-				rm -fv $(PUSH_SWAP) $(CHECKER)
+				rm -fv $(PUSH_SWAP) $(CHECKER) push_swap_with_stack
 
 re				: fclean all
 

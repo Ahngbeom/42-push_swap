@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:54:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 21:18:07 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/24 14:24:36 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_frame    *frame_init()
         ft_puterr();
     frame->a = NULL;
     frame->b = NULL;
-    frame->cmd_list = NULL;
+    frame->cmd = NULL;
     return (frame);
 }
 
@@ -41,7 +41,7 @@ void        frame_free(t_frame *frame)
         free(frame->b);
         frame->b = temp;
     }
-    if (frame->cmd_list != NULL)
-        free(frame->cmd_list);
+    if (frame->cmd != NULL)
+        free(frame->cmd);
     free(frame);
 }

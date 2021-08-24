@@ -6,11 +6,12 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:47:29 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/24 16:17:30 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/24 16:19:13 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void    print_stack(t_frame *frame);
 
 void     swap_a(t_frame *frame)
 {
@@ -25,6 +26,7 @@ void     swap_a(t_frame *frame)
     temp->next = frame->a;
     frame->a = temp;
     add_command(frame, "sa");
+    print_stack(frame);
 }
 
 void       swap_b(t_frame *frame)
@@ -40,6 +42,7 @@ void       swap_b(t_frame *frame)
     temp->next = frame->b;
     frame->b = temp;
     add_command(frame, "sb");
+    print_stack(frame);
 }
 
 void       swap_s(t_frame *frame)
@@ -60,4 +63,5 @@ void       swap_s(t_frame *frame)
     temp->next = frame->b;
     frame->b = temp;
     add_command(frame, "ss");
+    print_stack(frame);
 }
