@@ -6,7 +6,7 @@
 #    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/25 04:01:04 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/25 13:28:54 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CFLAGS			= -Wall -Wextra -Werror
 
 PUSH_SWAP		= push_swap
 CHECKER			= checker
+PS_WITH_STK		= push_swap_with_stack
 
 INCFLAGS		= -I./includes -I./libft
 
@@ -53,9 +54,11 @@ all				: $(PUSH_SWAP)
 
 bonus			: $(CHECKER)
 
-test			: $(OBJS) $(PUSHSWAP_OBJS)
+test			: $(PS_WITH_STK)
+
+$(PS_WITH_STK)	: $(OBJS) $(PUSHSWAP_OBJS)
 				$(MAKE) all -C $(LIB_DIR)
-				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(TEST_SRCS) $(LINK_LIBFT) -o push_swap_with_stack
+				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(TEST_SRCS) $(LINK_LIBFT) -o $@
 
 $(PUSH_SWAP) 	: $(OBJS) $(OPERATION_OBJS) $(PUSHSWAP_OBJS)
 				$(MAKE) all -C $(LIB_DIR)
@@ -75,7 +78,7 @@ clean			:
 
 fclean			: clean
 				$(MAKE) -C $(LIB_DIR) fclean
-				rm -fv $(PUSH_SWAP) $(CHECKER) push_swap_with_stack
+				rm -fv $(PUSH_SWAP) $(CHECKER) $(PS_WITH_STK)
 
 re				: fclean all
 
