@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:54:02 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/24 15:08:16 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/26 14:58:29 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pa)
 		else
 		{
 			*pa += push_a(frame);
-			if (length(frame->a) >= 2 && frame->a->element <= frame->big_pivot)
+			if (frame->a->element <= frame->big_pivot)
 				*ra += rotate_a(frame);
 		}
 	}

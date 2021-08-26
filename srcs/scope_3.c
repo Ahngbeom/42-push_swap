@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 21:47:04 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/23 01:32:42 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/26 14:37:33 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static  void    length_equal_3(t_frame *frame, t_stack *stack, int range)
 {
     if (stack == frame->a)
     {
-        while (check_asc(stack) == FALSE)
+        while (check_asc(frame->a) == FALSE)
         {
-            if (stack->element == max(stack, range))
+            if (frame->a->element == max(frame->a, range))
                 rotate_a(frame);
-            else if (stack->next->element == max(stack, range))
+            else if (frame->a->next->element == max(frame->a, range))
                 reverse_rotate_a(frame);
             else
                 swap_a(frame);
