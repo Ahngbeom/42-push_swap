@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:49:27 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 21:05:15 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 22:47:23 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,34 @@ static	int	sorting(t_frame *frame, int range)
 		return (FALSE);
 }
 
-static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pb)
+static	void	pivoting(t_frame *frame, int range, t_op_cnt *op_cnt)
 {
+	op_cnt->pb = 0;
+	op_cnt->ra = 0;
+	op_cnt->rb = 0;
 	while (range--)
 	{
 		if (frame->a->element > frame->big_pivot)
-			*ra += rotate_a(frame);
+			op_cnt->ra += rotate_a(frame);
 		else
 		{
-			*pb += push_b(frame);
+			op_cnt->pb += push_b(frame);
 			if (frame->b->element > frame->small_pivot)
-				*rb += rotate_b(frame);
+				op_cnt->rb += rotate_b(frame);
 		}
 	}
 }
 
 void	a_to_b(t_frame *frame, int range, void (*call_out_func))
 {
-	int	ra_cnt;
-	int	rb_cnt;
-	int	pb_cnt;
+	t_op_cnt	op_cnt;
 
 	if (sorting(frame, range) == TRUE)
 		return ;
 	select_pivot(frame, frame->a, range);
-	ra_cnt = 0;
-	rb_cnt = 0;
-	pb_cnt = 0;
-	pivoting(frame, range, &ra_cnt, &rb_cnt, &pb_cnt);
-	revert(frame, ra_cnt, rb_cnt, call_out_func);
-	a_to_b(frame, ra_cnt, call_out_func);
-	b_to_a(frame, rb_cnt, a_to_b);
-	b_to_a(frame, pb_cnt - rb_cnt, a_to_b);
+	pivoting(frame, range, &op_cnt);
+	revert(frame, op_cnt.ra, op_cnt.rb, call_out_func);
+	a_to_b(frame, op_cnt.ra, call_out_func);
+	b_to_a(frame, op_cnt.rb, a_to_b);
+	b_to_a(frame, op_cnt.pb - op_cnt.rb, a_to_b);
 }

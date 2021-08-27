@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:54:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 20:52:53 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 21:55:50 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ t_frame	*frame_init(void)
 		ft_puterr();
 	frame->a = NULL;
 	frame->b = NULL;
-	frame->op_cnt = (t_op_cnt *)malloc(sizeof(t_op_cnt));
-	if (frame->op_cnt == NULL)
-		ft_puterr();
+	frame->op_cnt = NULL;
 	frame->cmd = NULL;
 	return (frame);
 }
