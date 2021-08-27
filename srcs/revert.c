@@ -6,18 +6,18 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 12:47:22 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/23 12:51:32 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 21:03:04 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    revert(t_frame *frame, int ra, int rb, void (*call_out_func))
+void	revert(t_frame *frame, int ra, int rb, void (*call_out_func))
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (call_out_func == NULL)
+	i = 0;
+	if (call_out_func == NULL)
 	{
 		while (i++ < rb)
 			reverse_rotate_b(frame);

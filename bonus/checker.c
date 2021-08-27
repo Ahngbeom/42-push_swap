@@ -3,45 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 16:40:09 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 19:58:21 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "checker.h"
 
+static	void	push_operation(t_frame *frame, char *cmd)
+{
+	if (cmd[1] == 'a')
+		push_a(frame);
+	else if (cmd[1] == 'b')
+		push_b(frame);
+	else
+		ft_puterr();
+}
+
+static	void	swap_operation(t_frame *frame, char *cmd)
+{
+	if (cmd[1] == 'a')
+		swap_a(frame);
+	else if (cmd[1] == 'b')
+		swap_b(frame);
+	else if (cmd[1] == 's')
+		swap_s(frame);
+	else
+		ft_puterr();
+}
+
+static	void	rotate_operation(t_frame *frame, char *cmd)
+{
+	if (ft_strlen(cmd) == 2)
+	{
+		if (cmd[1] == 'a')
+			rotate_a(frame);
+		else if (cmd[1] == 'b')
+			rotate_b(frame);
+		else if (cmd[1] == 'r')
+			rotate_r(frame);
+	}
+	else if (ft_strlen(cmd) == 3 && cmd[1] == 'r')
+	{
+		if (cmd[2] == 'a')
+			reverse_rotate_a(frame);
+		else if (cmd[2] == 'b')
+			reverse_rotate_b(frame);
+		else if (cmd[2] == 'r')
+			reverse_rotate_r(frame);
+	}
+	else
+		ft_puterr();
+}
+
 static	void	select_operation(t_frame *frame, char *cmd)
 {
-	if (ft_strncmp(SWAP_A, cmd, ft_strlen(cmd)) == 0)
-		swap_a(frame);
-	else if (ft_strncmp(SWAP_B, cmd, ft_strlen(cmd)) == 0)
-		swap_b(frame);
-	else if (ft_strncmp(SWAP_S, cmd, ft_strlen(cmd)) == 0)
-		swap_s(frame);
-	else if (ft_strncmp(PUSH_A, cmd, ft_strlen(cmd)) == 0)
-		push_a(frame);
-	else if (ft_strncmp(PUSH_B, cmd, ft_strlen(cmd)) == 0)
-		push_b(frame);
-	else if (ft_strncmp(ROTATE_A, cmd, ft_strlen(cmd)) == 0)
-		rotate_a(frame);
-	else if (ft_strncmp(ROTATE_B, cmd, ft_strlen(cmd)) == 0)
-		rotate_b(frame);
-	else if (ft_strncmp(ROTATE_R, cmd, ft_strlen(cmd)) == 0)
-		rotate_r(frame);
-	else if (ft_strncmp(REVERSE_ROTATE_A, cmd, ft_strlen(cmd)) == 0)
-		reverse_rotate_a(frame);
-	else if (ft_strncmp(REVERSE_ROTATE_B, cmd, ft_strlen(cmd)) == 0)
-		reverse_rotate_b(frame);
-	else if (ft_strncmp(REVERSE_ROTATE_R, cmd, ft_strlen(cmd)) == 0)
-		reverse_rotate_r(frame);
+	if (cmd[0] == 'p')
+		push_operation(frame, cmd);
+	else if (cmd[0] == 's')
+		swap_operation(frame, cmd);
+	else if (cmd[0] == 'r')
+		rotate_operation(frame, cmd);
 	else
-	{
-		ft_putendl_fd("Error", 1);
-		exit(1);
-	}
+		ft_puterr();
 }
 
 int	main(int argc, char *argv[])

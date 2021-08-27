@@ -6,15 +6,15 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:54:02 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/26 14:58:29 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 21:04:36 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static  int     sorting(t_frame *frame, int range)
+static	int	sorting(t_frame *frame, int range)
 {
-    if (range <= 3)
+	if (range <= 3)
 	{
 		if (range == 1)
 			scope_1(frame, frame->b);
@@ -22,10 +22,10 @@ static  int     sorting(t_frame *frame, int range)
 			scope_2(frame, frame->b);
 		else
 			scope_3(frame, frame->b, range);
-        return (TRUE);
+		return (TRUE);
 	}
-    else
-        return (FALSE);
+	else
+		return (FALSE);
 }
 
 static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pa)
@@ -45,12 +45,12 @@ static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pa)
 
 void	b_to_a(t_frame *frame, int range, void (*call_out_func))
 {
-	int ra_cnt;
+	int	ra_cnt;
 	int	rb_cnt;
 	int	pa_cnt;
-	
+
 	if (sorting(frame, range) == TRUE)
-        return ;
+		return ;
 	select_pivot(frame, frame->b, range);
 	ra_cnt = 0;
 	rb_cnt = 0;

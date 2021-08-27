@@ -3,39 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahn <bbu0704@gmail.com>                   +#+  +:+       +#+        */
+/*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:41:58 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 16:41:31 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 19:15:20 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*ptr;
-
-	i = 0;
-	if ((size_t)ft_strlen((char *)s) < start)
-	{
-		if (!(ptr = malloc(1)))
-			return (NULL);
-		ptr[i] = '\0';
-	}
-	else
-	{
-		if (!(ptr = malloc(len + 1)))
-			return (NULL);
-		while (i < len && s[start] != '\0')
-			ptr[i++] = s[start++];
-		ptr[i] = '\0';
-	}
-	return (ptr);
-}
-
-int		find_line_feed(char *stc_buff)
+static	int	find_line_feed(char *stc_buff)
 {
 	int	i;
 
@@ -49,7 +26,7 @@ int		find_line_feed(char *stc_buff)
 	return (-1);
 }
 
-int		extract_line(char **stc_buff, char **line, int lf_idx)
+static	int	extract_line(char **stc_buff, char **line, int lf_idx)
 {
 	char	*temp;
 
@@ -66,19 +43,23 @@ int		extract_line(char **stc_buff, char **line, int lf_idx)
 	return (1);
 }
 
-int		end_of_file(char **stc_buff, char **line, int read_size)
+static	int	end_of_file(char **stc_buff, char **line, int read_size)
 {
 	int	lf_idx;
 
 	if (read_size < 0)
 		return (-1);
-	if (*stc_buff != NULL && ((lf_idx = find_line_feed(*stc_buff)) >= 0))
-		return (extract_line(stc_buff, line, lf_idx));
-	else if (*stc_buff != NULL)
+	if (*stc_buff != NULL)
 	{
-		*line = *stc_buff;
-		*stc_buff = NULL;
-		return (0);
+		lf_idx = find_line_feed(*stc_buff);
+		if (lf_idx >= 0)
+			return (extract_line(stc_buff, line, lf_idx));
+		else
+		{
+			*line = *stc_buff;
+			*stc_buff = NULL;
+			return (0);
+		}
 	}
 	else
 	{
@@ -87,29 +68,38 @@ int		end_of_file(char **stc_buff, char **line, int read_size)
 	}
 }
 
-int		get_next_line(int fd, char **line)
+static	void	write_in_buff(char **stc_buff, char *buff)
 {
-	static	char	*stc_buff[OPEN_MAX];
-	char			buff[BUFFER_SIZE + 1];
-	char 			*temp;
-	ssize_t			read_size;
-	ssize_t			lf_idx;
+	char	*temp;
+
+	if ((*stc_buff) == NULL)
+		*stc_buff = ft_strdup(buff);
+	else
+	{
+		temp = *stc_buff;
+		*stc_buff = ft_strjoin(*stc_buff, buff);
+		free(temp);
+	}
+}
+
+int	get_next_line(int fd, char **line)
+{
+	static char	*stc_buff[OPEN_MAX];
+	char		buff[BUFFER_SIZE + 1];
+	ssize_t		read_size;
+	ssize_t		lf_idx;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd >= OPEN_MAX)
 		return (-1);
-	while ((read_size = read(fd, buff, BUFFER_SIZE)) > 0)
+	read_size = read(fd, buff, BUFFER_SIZE);
+	while (read_size > 0)
 	{
 		buff[read_size] = '\0';
-		if (!stc_buff[fd])
-			stc_buff[fd] = ft_strdup(buff);
-		else
-		{
-			temp = stc_buff[fd];
-			stc_buff[fd] = ft_strjoin(stc_buff[fd], buff);
-			free(temp);
-		}
-		if ((lf_idx = find_line_feed(stc_buff[fd])) >= 0)
+		write_in_buff(&stc_buff[fd], buff);
+		lf_idx = find_line_feed(stc_buff[fd]);
+		if (lf_idx >= 0)
 			return (extract_line(&stc_buff[fd], line, lf_idx));
+		read_size = read(fd, buff, BUFFER_SIZE);
 	}
 	return (end_of_file(&stc_buff[fd], line, read_size));
 }

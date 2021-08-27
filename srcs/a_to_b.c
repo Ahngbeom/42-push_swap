@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:49:27 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 13:10:28 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 21:05:15 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int	sorting(t_frame *frame, int range)
 			scope_3(frame, frame->a, range);
 		return (TRUE);
 	}
-	else 
+	else
 		return (FALSE);
 }
 
@@ -43,9 +43,9 @@ static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pb)
 
 void	a_to_b(t_frame *frame, int range, void (*call_out_func))
 {
-	int ra_cnt;
-	int rb_cnt;
-	int pb_cnt;
+	int	ra_cnt;
+	int	rb_cnt;
+	int	pb_cnt;
 
 	if (sorting(frame, range) == TRUE)
 		return ;
