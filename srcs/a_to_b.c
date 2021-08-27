@@ -6,24 +6,24 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:49:27 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/26 14:37:30 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 13:10:28 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static  int    sorting(t_frame *frame, int range)
+static	int	sorting(t_frame *frame, int range)
 {
-    if (range <= 3)
+	if (range <= 3)
 	{
 		if (range == 2)
 			scope_2(frame, frame->a);
-        else if (range == 3)
+		else if (range == 3)
 			scope_3(frame, frame->a, range);
-        return (TRUE);
+		return (TRUE);
 	}
-    else 
-        return (FALSE);
+	else 
+		return (FALSE);
 }
 
 static	void	pivoting(t_frame *frame, int range, int *ra, int *rb, int *pb)

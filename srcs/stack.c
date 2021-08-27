@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 13:51:59 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/22 19:27:15 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/27 13:12:29 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void	apply_stack(t_frame *frame, t_stack *stack)
 {
-	t_stack *ptr;
+	t_stack	*ptr;
 
 	if (frame->a == NULL)
 	{
@@ -31,12 +31,12 @@ static	void	apply_stack(t_frame *frame, t_stack *stack)
 	}
 }
 
-void    stack_init(t_frame *frame, char **argv)
+void	stack_init(t_frame *frame, char **argv)
 {
-    t_stack     *stack;
-    int     i;
+	t_stack	*stack;
+	int		i;
 
-    i = 0;
+	i = 0;
 	while (argv[i + 1] != NULL)
 	{
 		stack = (t_stack *)malloc(sizeof(t_stack));
