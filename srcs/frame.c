@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:54:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 21:55:50 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/28 13:35:38 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_frame	*frame_init(void)
 		ft_puterr();
 	frame->a = NULL;
 	frame->b = NULL;
-	frame->op_cnt = NULL;
 	frame->cmd = NULL;
 	return (frame);
 }

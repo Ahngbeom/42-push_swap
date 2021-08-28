@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 21:02:59 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/28 13:34:46 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ struct	s_frame
 	t_stack		*b;
 	int			big_pivot;
 	int			small_pivot;
-	t_op_cnt	*op_cnt;
 	char		*cmd;
 };
 
