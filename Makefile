@@ -6,7 +6,7 @@
 #    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/25 13:28:54 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/30 12:46:35 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,33 +22,34 @@ INCFLAGS		= -I./includes -I./libft
 LIB_DIR			= ./libft
 LINK_LIBFT		= -Llibft -lft
 
-SRCS_DIR		= ./srcs/
-SRCS_FNAME		= a_to_b.c b_to_a.c \
-					frame.c stack.c command.c \
-					sort_check.c exception.c \
-					scope_1.c scope_2.c scope_3.c \
-					pivot.c revert.c \
-					length.c element.c \
+SRCS_PATH		= ./srcs/
+BONUS_PATH		= ./bonus/
 
-SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_FNAME))
-OBJS			= $(SRCS:.c=.o)
+FRAME_SRCS			= $(addprefix $(SRCS_PATH), $(addprefix frame/, frame.c))
+FRAME_OBJS			= $(FRAME_SRCS:.c=.o)
 
-OPERATION_DIR		= $(addprefix $(SRCS_DIR), operation/)
-OPERATION_FNAME		= swap.c push.c rotate.c reverse_rotate.c
-OPERATION_SRCS		= $(addprefix $(OPERATION_DIR), $(OPERATION_FNAME))
+STACK_SRCS			= $(addprefix $(SRCS_PATH), $(addprefix stack/, stack.c))
+STACK_OBJS			= $(STACK_SRCS:.c=.o)
+
+OPERATION_SRCS		= $(addprefix $(SRCS_PATH), $(addprefix operation/, swap.c push.c rotate.c reverse_rotate.c))
 OPERATION_OBJS		= $(OPERATION_SRCS:.c=.o)
 
-PUSHSWAP_SRCS		= ./srcs/push_swap.c
+COMMAND_SRCS		= $(addprefix $(SRCS_PATH), $(addprefix command/, command.c))
+COMMAND_OBJS		= $(COMMAND_SRCS:.c=.o)
+
+EXCEPTION_SRCS		= $(addprefix $(SRCS_PATH), $(addprefix exception/, exception.c))
+EXCEPTION_OBJS		= $(EXCEPTION_SRCS:.c=.o)
+
+UTILS_SRCS			= $(addprefix $(SRCS_PATH), $(addprefix utils/, sort_check.c length.c element.c))
+UTILS_OBJS			= $(UTILS_SRCS:.c=.o)
+
+PUSHSWAP_SRCS		= $(addprefix $(SRCS_PATH), push_swap.c a_to_b.c b_to_a.c scope_1.c scope_2.c scope_3.c pivot.c revert.c)
 PUSHSWAP_OBJS		= $(PUSHSWAP_SRCS:.c=.o)
 
-CHECKER_SRCS		= ./bonus/checker.c ./bonus/get_next_line.c
+CHECKER_SRCS		= $(addprefix $(BONUS_PATH), checker.c get_next_line.c)
 CHECKER_OBJS		= $(CHECKER_SRCS:.c=.o)
 
-TEST_SRCS			= ./dir_for_test/print.c \
-					 ./dir_for_test/operation/push.c \
-					 ./dir_for_test/operation/swap.c \
-					 ./dir_for_test/operation/rotate.c \
-					 ./dir_for_test/operation/reverse_rotate.c \
+TEST_SRCS			= $(addprefix ./dir_for_test/, print.c push.c swap.c rotate.c reverse_rotate.c)
 
 all				: $(PUSH_SWAP)
 
@@ -56,15 +57,15 @@ bonus			: $(CHECKER)
 
 test			: $(PS_WITH_STK)
 
-$(PS_WITH_STK)	: $(OBJS) $(PUSHSWAP_OBJS)
+$(PS_WITH_STK)	: $(OBJS) $(FRAME_OBJS) $(STACK_OBJS) $(COMMAND_OBJS) $(UTILS_OBJS) $(EXCEPTION_OBJS) $(PUSHSWAP_OBJS)
 				$(MAKE) all -C $(LIB_DIR)
 				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(TEST_SRCS) $(LINK_LIBFT) -o $@
 
-$(PUSH_SWAP) 	: $(OBJS) $(OPERATION_OBJS) $(PUSHSWAP_OBJS)
+$(PUSH_SWAP) 	: $(OBJS) $(FRAME_OBJS) $(STACK_OBJS) $(OPERATION_OBJS) $(COMMAND_OBJS) $(UTILS_OBJS) $(EXCEPTION_OBJS) $(PUSHSWAP_OBJS)
 				$(MAKE) all -C $(LIB_DIR)
 				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(LINK_LIBFT) -o $@
 
-$(CHECKER)		: $(OBJS) $(OPERATION_OBJS) $(CHECKER_OBJS)
+$(CHECKER)		: $(OBJS) $(FRAME_OBJS) $(STACK_OBJS) $(OPERATION_OBJS) $(COMMAND_OBJS) $(UTILS_OBJS) $(EXCEPTION_OBJS) $(CHECKER_OBJS)
 				$(MAKE) all
 				$(MAKE) all -C $(LIB_DIR)
 				$(CC) $(CFLAGS) $(INCFLAGS) $^ $(LINK_LIBFT) -o $@
@@ -74,7 +75,8 @@ $(CHECKER)		: $(OBJS) $(OPERATION_OBJS) $(CHECKER_OBJS)
 
 clean			:
 				$(MAKE) -C $(LIB_DIR) clean
-				rm -fv $(OBJS) $(OPERATION_OBJS) $(PUSHSWAP_OBJS) $(CHECKER_OBJS)
+				rm -fv $(OBJS) $(FRAME_OBJS) $(STACK_OBJS) $(OPERATION_OBJS) $(COMMAND_OBJS) \
+				$(UTILS_OBJS) $(EXCEPTION_OBJS) $(PUSHSWAP_OBJS) $(CHECKER_OBJS)
 
 fclean			: clean
 				$(MAKE) -C $(LIB_DIR) fclean
