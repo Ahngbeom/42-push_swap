@@ -6,23 +6,21 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:54:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/28 13:35:38 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/31 00:35:36 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_frame	*frame_init(void)
+t_frame	*frame_init(t_frame **frame)
 {
-	t_frame	*frame;
-
-	frame = (t_frame *)malloc(sizeof(t_frame));
-	if (frame == NULL)
+	*frame = (t_frame *)malloc(sizeof(t_frame));
+	if (*frame == NULL)
 		ft_puterr();
-	frame->a = NULL;
-	frame->b = NULL;
-	frame->cmd = NULL;
-	return (frame);
+	(*frame)->a = NULL;
+	(*frame)->b = NULL;
+	(*frame)->cmd = NULL;
+	return (*frame);
 }
 
 void	frame_free(t_frame *frame)

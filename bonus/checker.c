@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 18:08:05 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 19:58:21 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/31 00:35:58 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char *argv[])
 	char	*cmd;
 
 	invalid_arg(argc, argv);
-	frame = frame_init();
+	frame_init(&frame);
 	stack_init(frame, argv);
 	while (get_next_line(0, &cmd) > 0)
 	{

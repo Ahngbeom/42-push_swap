@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:22:15 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/28 13:34:46 by bahn             ###   ########.fr       */
+/*   Updated: 2021/08/31 00:24:14 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_puterr(void);
 void	invalid_arg(int argc, char *argv[]);
 
 // Frame
-t_frame	*frame_init(void);
+t_frame	*frame_init(t_frame **frame);
 void	frame_free(t_frame *frame);
 
 // Stack
@@ -90,7 +90,6 @@ void	revert(t_frame *frame, int ra, int rb, void (*call_out_func));
 int		push_a(t_frame *frame);
 int		push_b(t_frame *frame);
 
-// Operation
 void	swap_a(t_frame *frame);
 void	swap_b(t_frame *frame);
 void	swap_s(t_frame *frame);
