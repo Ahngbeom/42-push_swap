@@ -28,3 +28,13 @@
 	10000 이하의 명령어 사용 : 2점
 
 	11500 이하의 명령어 사용 : 1점
+
+
+# tester 파일 실행방법
+
+## ``` bash tester <인자 개수> ```
+## ``` bash tester_with_leak <인자 개수> ```
+## ``` bash tester_with_stack <인자 개수> ```
+
+
+### 저의 tester 파일은 minckim 님이 구현하신 push_swap_tester의 random_numbers 파일을 기반으로 작성했습니다.
