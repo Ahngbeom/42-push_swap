@@ -1,3 +1,10 @@
+<a href="https://ahngbeom-bahn.notion.site/Push_Swap-21572385d3744c038e8e102dd5a60556">
+<img src="https://pbs.twimg.com/profile_images/1381737932780752896/MbHGl54A_400x400.png" width=100>
+</a>
+
+<!-- [![](https://pbs.twimg.com/profile_images/1381737932780752896/MbHGl54A_400x400.png)](https://ahngbeom-bahn.notion.site/Push_Swap-21572385d3744c038e8e102dd5a60556) -->
+
+
 100개의 인자
 
 	700 이하의 명령어 사용 : 5점
@@ -21,21 +28,3 @@
 	10000 이하의 명령어 사용 : 2점
 
 	11500 이하의 명령어 사용 : 1점
-
-clear && make re && ARG="2 1 3 0"; ./push_swap $ARG | ./checker_linux $ARG
-
-1. Pivot 선택 (A 스택의 중간 값)
-
-2. Pivot 보다 작은 값 B 스택으로 PUSH
-
-3. A 스택, B 스택 각각 오름차순, 내림차순으로 정렬
-
-4. B 스택 모든 요소들을 A 스택으로 PUSH
-
-# PUSH_SWAP 연산 전 체크
-
--	인자가 1개이거나, 이미 오름차순으로 정렬이 되어있을 경우
-
--	인자가 3개일 경우 - 
-
--	내림차순으로 정렬되어있을 경우
