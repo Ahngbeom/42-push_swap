@@ -6,7 +6,7 @@
 #    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/31 15:37:22 by bahn             ###   ########.fr        #
+#    Updated: 2021/09/01 15:29:07 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ PUSHSWAP_OBJS		= $(PUSHSWAP_SRCS:.c=.o)
 CHECKER_SRCS		= $(addprefix $(BONUS_PATH), checker.c get_next_line.c)
 CHECKER_OBJS		= $(CHECKER_SRCS:.c=.o)
 
-TEST_SRCS			= $(addprefix ./dir_for_test/, print.c push.c swap.c rotate.c reverse_rotate.c)
+TEST_SRCS			= $(addprefix ./dir_for_test/, print.c $(addprefix operation/, push.c swap.c rotate.c reverse_rotate.c))
 
 all				: $(PUSH_SWAP)
 

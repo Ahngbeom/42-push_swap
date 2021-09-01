@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:42:37 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 15:43:37 by bahn             ###   ########.fr       */
+/*   Updated: 2021/09/01 15:38:44 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	reverse_rotate_r(t_frame *frame)
 		reverse_rotate_b(frame);
 		return ;
 	}
-	if (length(frame->b) >= 2 && length(frame->b) < 2)
+	if (length(frame->a) >= 2 && length(frame->b) < 2)
 	{
 		reverse_rotate_a(frame);
 		return ;
