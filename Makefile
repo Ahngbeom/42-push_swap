@@ -6,12 +6,12 @@
 #    By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 21:16:21 by bahn              #+#    #+#              #
-#    Updated: 2021/08/30 12:46:35 by bahn             ###   ########.fr        #
+#    Updated: 2021/08/31 15:37:22 by bahn             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -fsanitize=address -static-libasan -g
 
 PUSH_SWAP		= push_swap
 CHECKER			= checker

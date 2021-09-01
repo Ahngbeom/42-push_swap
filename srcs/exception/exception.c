@@ -6,7 +6,7 @@
 /*   By: bahn <bahn@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:55:42 by bahn              #+#    #+#             */
-/*   Updated: 2021/08/27 15:48:41 by bahn             ###   ########.fr       */
+/*   Updated: 2021/09/01 13:24:08 by bahn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_puterr(void)
 void	invalid_arg(int argc, char *argv[])
 {
 	if (argc < 2)
-		ft_puterr();
+		exit(1);
 	isInteger(argv);
 	duplicate_checker(argv);
 }
