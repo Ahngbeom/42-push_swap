@@ -1,3 +1,5 @@
+# Push Swap [![bahn's 42Project Score](https://badge42.herokuapp.com/api/project/bahn/push-swap)](https://github.com/JaeSeoKim/badge42)
+
 <a href="https://ahngbeom-bahn.notion.site/Push_Swap-21572385d3744c038e8e102dd5a60556">
 <img src="https://pbs.twimg.com/profile_images/1381737932780752896/MbHGl54A_400x400.png" width=100>
 </a>
